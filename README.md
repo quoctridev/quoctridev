@@ -16,6 +16,23 @@ Website: [quoctri.dev](https://quoctri.dev)
 
 Mình tập trung vào Java Backend, ưu tiên các hệ thống rõ nghiệp vụ, dễ mở rộng và chạy ổn định trong môi trường thực tế. Stack mình dùng nhiều là Spring Boot, Spring Security, JPA/Hibernate, RESTful API, Docker, Nginx và các hệ quản trị cơ sở dữ liệu như MySQL, MongoDB, MSSQL.
 
+## Công việc và hành trình
+
+### Bee Logistics
+
+Đây là công việc chính hiện tại của mình. Môi trường này giúp mình rèn tốc độ xử lý, kỷ luật công việc và cách nhìn thực tế hơn về vận hành.
+
+### VAWAY
+
+Vai trò: `Java Backend Developer`  
+Thời gian: `06/2025 - 10/2025`
+
+Mình tham gia phát triển và bảo trì API bằng Spring Boot và MySQL, tối ưu truy vấn, tích hợp SMTP và triển khai ứng dụng nội bộ với Docker, Nginx.
+
+### FPT Polytechnic
+
+Đây là nền tảng học tập trước đây của mình trong giai đoạn theo học ngành Phát triển phần mềm. GPA đạt `3.85/4.0`, đồng thời có các kết quả nổi bật như `Top 3 sinh viên xuất sắc nhất ngành` và `Ong Vàng học kỳ Summer 2024`.
+
 ## Kỹ năng chính
 
 - Java, JavaScript
