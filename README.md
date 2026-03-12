@@ -1,80 +1,80 @@
-<h1 align="center">Hi 👋, I'm Nguyễn Quốc Anh (a.k.a Quốc Trí)</h1>
-<h3 align="center">💻 A passionate fullstack developer from Vietnam | Intern @ Vaway | FPT Polytechnic</h3>
+# quoctri.dev
 
-<p align="center">
-  <img src="https://img.shields.io/badge/Java-ED8B00?style=flat&logo=java&logoColor=white"/>
-  <img src="https://img.shields.io/badge/SpringBoot-6DB33F?style=flat&logo=spring-boot&logoColor=white"/>
-  <img src="https://img.shields.io/badge/Express.js-000000?style=flat&logo=express&logoColor=white"/>
-  <img src="https://img.shields.io/badge/React-20232A?style=flat&logo=react&logoColor=61DAFB"/>
-  <img src="https://img.shields.io/badge/SQL%20Server-CC2927?style=flat&logo=microsoft-sql-server&logoColor=white"/>
-  <img src="https://img.shields.io/badge/Nginx-009639?style=flat&logo=nginx&logoColor=white"/>
-  <img src="https://img.shields.io/badge/TailwindCSS-38B2AC?style=flat&logo=tailwind-css&logoColor=white"/>
-  <img src="https://img.shields.io/badge/GitHub-000?style=flat&logo=github&logoColor=white"/>
-</p>
+Portfolio cá nhân của Nguyễn Quốc Anh, mọi người thường gọi là Trí.
 
----
+Website: [quoctri.dev](https://quoctri.dev)
 
-- 🌱 I’m currently working on:
-  - 🔹 Rebuilding my Java Swing POS System with **Spring Boot + ReactJS**
-  - 🔹 Deploying apps using **Nginx + VPS**, familiar with **Render** and **Vercel**
-  - 🔹 Strengthening skills in **clean architecture, API security, and testing**
+## Thông tin nhanh
 
-- 🎓 I'm currently interning at **Vaway** and still have 2 semesters left at **FPT Polytechnic**, majoring in **Software Development**
+- Java Backend Developer
+- Hiện đang làm chính tại Bee Logistics
+- Từng làm Java Backend Developer tại VAWAY
+- Từng học tại FPT Polytechnic, GPA 3.85/4.0
+- Sinh ngày 12/04/2007, ở Hải Phòng
 
-- 🧾 My graduation project:
-  - [POS_Func - Java Swing POS System](https://github.com/quoctridev/POS_Func)
-  - ➤ 12K+ LOC | Multi-layered architecture (DAO – DTO – Entity – UI)
-  - ➤ Features: Invoice management, Inventory control, User roles, Statistics, etc.
+## Định hướng
 
-- 📫 Contact me:
-  - 📧 quocanh1204.dev@gmail.com
-  - 🔗 [https://github.com/quoctridev](https://github.com/quoctridev)
-  - 🌐 [Facebook](https://www.facebook.com/quoctris.dev/)
-  - ☎️ Phone/Zalo: 0793391878  
+Mình tập trung vào Java Backend, ưu tiên các hệ thống rõ nghiệp vụ, dễ mở rộng và chạy ổn định trong môi trường thực tế. Stack mình dùng nhiều là Spring Boot, Spring Security, JPA/Hibernate, RESTful API, Docker, Nginx và các hệ quản trị cơ sở dữ liệu như MySQL, MongoDB, MSSQL.
 
----
+## Kỹ năng chính
 
-### 🛠 Tech Stack
+- Java, JavaScript
+- Spring Boot, Spring Security, JPA/Hibernate, RESTful API
+- ReactJS, HTML, CSS, TailwindCSS
+- MySQL, MongoDB, MSSQL
+- Docker, Nginx, VPS
+- Git, GitHub, Postman, VS Code, IntelliJ IDEA
 
-```markdown
-💻 Languages:        Java, JavaScript, SQL
-🧰 Backend:          Express.js, Spring Boot, Node.js (basic)
-🌐 Frontend:         ReactJS, HTML, CSS, TailwindCSS
-🛢 Database:         SQL Server, MySQL
-🌐 Server:           Nginx (reverse proxy, deployment)
-🔧 Tools & Platform: Git, GitHub, Postman, IntelliJ, NetBeans, VSCode
+## Dự án nổi bật
+
+### Foco
+
+Nền tảng SaaS quản lý bán hàng đa chi nhánh. Mình phụ trách backend, thiết kế dữ liệu, xây hơn 20 RESTful APIs, áp dụng JWT và phân quyền để đồng bộ frontend-backend theo nghiệp vụ thực tế.
+
+Tech: `Spring Boot`, `Spring Security`, `JWT`, `SQL Server`, `Cloudflare R2`  
+Source: [github.com/quoctridev/Foco](https://github.com/quoctridev/Foco)
+
+### POS_Func
+
+Dự án tốt nghiệp Java Swing theo mô hình nhiều lớp DAO - DTO - Entity - UI, xử lý bán hàng, hóa đơn, kho, phân quyền người dùng và thống kê doanh thu.
+
+Tech: `Java Swing`, `SQL Server`, `DAO/DTO`, `Inventory`, `Statistics`  
+Source: [github.com/quoctridev/POS_Func](https://github.com/quoctridev/POS_Func)
+
+### QuocTriMoney
+
+Tool automation nhận webhook giao dịch ngân hàng rồi đẩy thông báo sang Telegram, phục vụ theo dõi giao dịch nhanh và dễ mở rộng thêm tích hợp khác.
+
+Tech: `Node.js`, `Express`, `Telegram Bot`, `SePay`, `Webhook`  
+Source: [github.com/quoctridev/QuocTriMoney](https://github.com/quoctridev/QuocTriMoney)
+
+## Thành tích
+
+- Top 3 sinh viên xuất sắc nhất ngành
+- Ong Vàng học kỳ Summer 2024
+- Quán quân BugSlayer FPT Thanh Hóa
+- MOS Word 925
+- Tham gia Hackathon FPT
+
+## Liên hệ
+
+- Website: [quoctri.dev](https://quoctri.dev)
+- GitHub: [github.com/quoctridev](https://github.com/quoctridev)
+- Facebook: [facebook.com/quoctris.dev](https://www.facebook.com/quoctris.dev/)
+- Telegram: [@quoctrisdev](https://t.me/quoctrisdev)
+- Email: [quoctris.dev@gmail.com](mailto:quoctris.dev@gmail.com)
+- SĐT: `0793391878`
+
+## Chạy local
+
+```bash
+node server.js
 ```
 
----
+Site sẽ chạy tại `http://127.0.0.1:4173`.
 
-### 📊 GitHub Stats
+Nếu muốn dùng form liên hệ Telegram:
 
-<p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=quoctridev&show_icons=true&theme=radical" alt="GitHub Stats" />
-</p>
-
----
-
-### 📌 Connect with me
-
-<p align="left">
-  <a href="https://github.com/quoctridev" target="_blank">
-    <img alt="GitHub" src="https://img.shields.io/badge/GitHub-000?style=flat&logo=github&logoColor=white" />
-  </a>
-  <a href="https://facebook.com/quoctridev" target="_blank">
-    <img alt="Facebook" src="https://img.shields.io/badge/Facebook-1877F2?style=flat&logo=facebook&logoColor=white" />
-  </a>
-  <a href="https://quoctri.dev" target="_blank">
-    <img alt="Website" src="https://img.shields.io/badge/Portfolio-000000?style=flat&logo=About.me&logoColor=white" />
-  </a>
-</p>
-
----
-
-### ⚡ Fun fact
-
-```markdown
-🔹 I always build backend logic first, then worry about the UI
-🔹 I prefer shipping working code over writing perfect theory
-🔹 I drink coffee like my code depends on it ☕
-🔹 I name variables better after midnight
+1. Tạo file `.env` từ `.env.example`
+2. Điền `TELEGRAM_BOT_TOKEN` và `TELEGRAM_CHAT_ID`
+3. Chạy lại `node server.js`
