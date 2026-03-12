@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth overflow-x-hidden">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nguyễn Quốc Anh (Trí) | Fullstack Developer</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <!-- AOS Animation CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+            <!-- AOS JS Library -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Phosphor Icons for modern icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3274778094917677"
+     crossorigin="anonymous"></script>
+    <!-- Alpine.js for lightweight interactions & Data binding (DEFER IS REQUIRED) -->
+<!-- DATA SOURCE & ALPINE COMPONENT INIT -->
+    <script>
+        // Data Object Configuration
+        const myPortfolioData = {
+            logo: "Trí<span class='text-primary'>.</span>",
+            menu: [
+                { id: 1, label: 'Giới thiệu', link: '#about' },
+                { id: 2, label: 'Kỹ năng', link: '#skills' },
+                { id: 3, label: 'Học tập & công việc', link: '#education' },
+                { id: 4, label: 'Dự án', link: '#projects' },
+                { id: 5, label: 'Thành tích', link: '#certifications' },
+                { id: 6, label: 'Kết nối', link: '#affiliates' }
+            ],
+            hero: {
+                availability: 'Đang làm chính tại Bee Logistics',
+                name: 'Nguyễn Quốc Anh',
+                title: 'Java Backend Developer',
+                description: 'Mọi người thường gọi mình là Trí. Mình định hướng Java Backend, tập trung vào Spring Boot, RESTful API, JWT, cơ sở dữ liệu và triển khai backend thực chiến với Docker, Nginx.',
+                cvLink: 'assets/pdf/nguyen-quoc-anh-cv.pdf'
+            },
+            about: {
+                paragraphs: [
+                    "Mình là <strong>Nguyễn Quốc Anh</strong>, mọi người thường gọi là <strong>Trí</strong>. Mình sinh ngày <strong>12/04/2007</strong>, quê ở <strong>Hải Phòng</strong> và đang theo đuổi hướng đi lâu dài với Java Backend.",
+                    "Mình từng học tại <strong>FPT Polytechnic</strong> ngành Ứng dụng phần mềm với GPA <strong>3.85/4</strong>, từng làm <strong>Java Backend Developer tại VAWAY</strong> và hiện đang làm chính tại <strong>Bee Logistics</strong>. Mình thích xây hệ thống backend rõ nghiệp vụ, dễ mở rộng và chạy ổn định trong môi trường thực tế."
+                ],
+                details: [
+                    { id: 1, label: 'Ngày sinh', value: '12/04/2007 (18 tuổi)', icon: 'ph-fill ph-calendar-blank', iconBg: 'bg-primary/20 text-primary' },
+                    { id: 2, label: 'Đang ở', value: 'Hải Phòng, Việt Nam', icon: 'ph-fill ph-map-pin', iconBg: 'bg-accent/20 text-accent' },
+                    { id: 3, label: 'Công việc hiện tại', value: 'Bee Logistics (làm chính)', icon: 'ph-fill ph-briefcase', iconBg: 'bg-emerald-500/20 text-emerald-400' },
+                    { id: 4, label: 'Điện thoại', value: '0793391878', icon: 'ph-fill ph-phone', iconBg: 'bg-orange-500/20 text-orange-400' }
+                ],
+                avatarOptions: ['assets/img/avatar-1.jpg', 'assets/img/avatar-2.jpg']
+            },
+            skills: [
+                {
+                    id: 1, title: 'Java Backend & API', delay: '100',
+                    icon: 'ph-duotone ph-brackets-curly', iconBg: 'bg-blue-500/10 border-blue-500/20', iconColor: 'text-blue-400', checkColor: 'text-primary',
+                    description: 'Tập trung vào backend thực chiến với Spring Boot, bảo mật, ORM và thiết kế API rõ nghiệp vụ.',
+                    items: ['Java', 'Spring Boot', 'Spring Security (JWT)', 'JPA / Hibernate', 'RESTful API']
+                },
+                {
+                    id: 2, title: 'Frontend & UI', delay: '200',
+                    icon: 'ph-duotone ph-layout', iconBg: 'bg-cyan-500/10 border-cyan-500/20', iconColor: 'text-cyan-400', checkColor: 'text-cyan-400',
+                    description: 'Đủ khả năng phối hợp frontend để nối giao diện với backend và hoàn thiện flow sản phẩm.',
+                    items: ['ReactJS', 'HTML', 'CSS', 'TailwindCSS', 'NodeJS (cơ bản)']
+                },
+                {
+                    id: 3, title: 'Database & Deploy', delay: '300',
+                    icon: 'ph-duotone ph-database', iconBg: 'bg-green-500/10 border-green-500/20', iconColor: 'text-green-400', checkColor: 'text-green-500',
+                    description: 'Làm việc với dữ liệu và triển khai hệ thống backend lên môi trường chạy thật.',
+                    items: ['MySQL', 'MongoDB', 'MSSQL', 'Docker', 'Nginx / VPS']
+                },
+                {
+                    id: 4, title: 'Tools & Soft Skills', delay: '400',
+                    icon: 'ph-duotone ph-git-branch', iconBg: 'bg-orange-500/10 border-orange-500/20', iconColor: 'text-orange-400', checkColor: 'text-orange-500',
+                    description: 'Ngoài code, mình quen làm việc nhóm, mentoring nội bộ và sử dụng tool để tăng tốc triển khai.',
+                    items: ['Git & GitHub', 'Postman', 'VS Code / IntelliJ IDEA', 'Tư duy logic', 'Mentoring / đào tạo nội bộ']
+                }
+            ],
+            skillTags: [
+                'Java', 'JavaScript', 'Spring Boot', 'Spring Security', 'JPA/Hibernate', 'REST API',
+                'ReactJS', 'NodeJS', 'MySQL', 'MongoDB', 'MSSQL', 'Docker', 'Nginx', 'GitHub', 'Postman', 'Mentoring'
+            ],
+            education: [
+                {
+                    id: 1, degree: 'Bee Logistics', period: 'Hiện tại', delay: '0',
+                    school: 'Công việc chính hiện tại của mình',
+                    highlight: 'Hiện đang làm chính tại Bee Logistics',
+                    description: 'Đây là môi trường mình đang làm chính để rèn tốc độ xử lý, kỷ luật công việc và trải nghiệm vận hành thực tế.',
+                    icon: 'ph-fill ph-briefcase', iconColor: 'text-accent', periodBg: 'bg-accent/10 text-accent border-accent/20'
+                },
+                {
+                    id: 2, degree: 'VAWAY', period: '06/2025 - 10/2025', delay: '100',
+                    school: 'Java Backend Developer',
+                    highlight: 'Phát triển và bảo trì API bằng Spring Boot và MySQL',
+                    description: 'Xây dựng và bảo trì API cho hệ thống quản lý nội dung và người dùng, tối ưu truy vấn đến 25%, tích hợp SMTP và triển khai ứng dụng nội bộ qua Docker, Nginx.',
+                    icon: 'ph-fill ph-code', iconColor: 'text-cyan-400', periodBg: 'bg-cyan-500/10 text-cyan-300 border-cyan-500/20'
+                },
+                {
+                    id: 3, degree: 'FPT Polytechnic', period: '2022 - 2026', delay: '200',
+                    school: 'Chuyên ngành Phát triển phần mềm',
+                    highlight: 'Top 3 sinh viên xuất sắc nhất ngành • GPA: 3.85/4',
+                    description: 'Đây là nền tảng học tập trước đây của mình, nơi mình tập trung vào Java, JavaScript, backend thực chiến và phát triển kỹ năng xây hệ thống.',
+                    icon: 'ph-fill ph-graduation-cap', iconColor: 'text-primary', periodBg: 'bg-primary/10 text-primary border-primary/20'
+                }
+            ],
+            projects: [
+                {
+                    id: 1, title: 'Foco', icon: 'ph-duotone ph-fork-knife', link: 'https://github.com/quoctridev/Foco',
+                    description: 'Nền tảng SaaS quản lý bán hàng đa chi nhánh. Mình tham gia theo vai trò backend, thiết kế dữ liệu, xây 20+ RESTful APIs, áp dụng JWT và phân quyền để đồng bộ frontend-backend theo nghiệp vụ thực tế.',
+                    tags: [
+                        { name: 'Spring Boot', class: 'bg-blue-500/10 text-blue-400 border-blue-500/20' },
+                        { name: 'Spring Security', class: 'bg-pink-500/10 text-pink-300 border-pink-500/20' },
+                        { name: 'JWT', class: 'bg-slate-800 text-slate-300 border-slate-700' },
+                        { name: 'SQL Server', class: 'bg-emerald-500/10 text-emerald-300 border-emerald-500/20' },
+                        { name: 'Cloudflare R2', class: 'bg-orange-500/10 text-orange-300 border-orange-500/20' }
+                    ]
+                },
+                {
+                    id: 2, title: 'POS_Func', icon: 'ph-duotone ph-cash-register', link: 'https://github.com/quoctridev/POS_Func',
+                    description: 'Dự án tốt nghiệp xây bằng Java Swing theo mô hình nhiều lớp DAO - DTO - Entity - UI. Hệ thống xử lý bán hàng, hóa đơn, kho, phân quyền người dùng và thống kê doanh thu cho cửa hàng bán lẻ.',
+                    tags: [
+                        { name: 'Java Swing', class: 'bg-yellow-500/10 text-yellow-300 border-yellow-500/20' },
+                        { name: 'SQL Server', class: 'bg-emerald-500/10 text-emerald-300 border-emerald-500/20' },
+                        { name: 'DAO/DTO', class: 'bg-purple-500/10 text-purple-300 border-purple-500/20' },
+                        { name: 'Inventory', class: 'bg-slate-800 text-slate-300 border-slate-700' },
+                        { name: 'Statistics', class: 'bg-pink-500/10 text-pink-300 border-pink-500/20' }
+                    ]
+                },
+                {
+                    id: 3, title: 'QuocTriMoney', icon: 'ph-duotone ph-wallet', link: 'https://github.com/quoctridev/QuocTriMoney',
+                    description: 'Tool automation nhận webhook giao dịch ngân hàng qua SePay rồi đẩy thông báo sang Telegram. Mục tiêu là biến dữ liệu giao dịch thành luồng theo dõi nhanh, gọn và dễ mở rộng thêm tích hợp khác.',
+                    tags: [
+                        { name: 'Node.js', class: 'bg-green-500/10 text-green-300 border-green-500/20' },
+                        { name: 'Express', class: 'bg-slate-800 text-slate-300 border-slate-700' },
+                        { name: 'Telegram Bot', class: 'bg-sky-500/10 text-sky-300 border-sky-500/20' },
+                        { name: 'SePay', class: 'bg-orange-500/10 text-orange-300 border-orange-500/20' },
+                        { name: 'Webhook', class: 'bg-blue-500/10 text-blue-400 border-blue-500/20' }
+                    ]
+                }
+            ],
+            certifications: [
+                { id: 1, title: 'Top 3 sinh viên xuất sắc nhất ngành', issuer: 'FPT Polytechnic', delay: '100', icon: 'ph-duotone ph-student', iconColor: 'text-cyan-400', iconBg: 'bg-cyan-500/10 border-cyan-500/20' },
+                { id: 2, title: 'Ong Vàng học kỳ Summer 2024', issuer: 'FPT Polytechnic', delay: '200', icon: 'ph-duotone ph-medal', iconColor: 'text-amber-400', iconBg: 'bg-amber-500/10 border-amber-500/20' },
+                { id: 3, title: 'Quán quân BugSlayer FPT Thanh Hóa', issuer: 'Giải thưởng năm 2025', delay: '300', icon: 'ph-duotone ph-trophy', iconColor: 'text-yellow-500', iconBg: 'bg-yellow-500/10 border-yellow-500/20' },
+                { id: 4, title: 'MOS Word 925', issuer: 'Chứng chỉ năm 2025', delay: '400', icon: 'ph-duotone ph-certificate', iconColor: 'text-emerald-400', iconBg: 'bg-emerald-500/10 border-emerald-500/20' },
+                { id: 5, title: 'Hackathon FPT', issuer: 'Đã tham gia thi đấu và cọ xát thực chiến', delay: '500', icon: 'ph-duotone ph-lightning', iconColor: 'text-pink-400', iconBg: 'bg-pink-500/10 border-pink-500/20' }
+            ],
+            affiliates: [
+                { id: 1, title: 'Facebook', delay: '100', icon: 'ph-duotone ph-facebook-logo', iconColor: 'text-blue-400', iconBg: 'bg-blue-500/10 border-blue-500/20', description: 'Kênh mình dùng để cập nhật hoạt động và kết nối nhanh khi cần trao đổi.', link: 'https://www.facebook.com/quoctris.dev/' },
+                { id: 2, title: 'GitHub', delay: '200', icon: 'ph-duotone ph-github-logo', iconColor: 'text-slate-200', iconBg: 'bg-slate-700/30 border-slate-600', description: 'Nơi mình public source code, project học tập và các tool mình đang build.', link: 'https://github.com/quoctridev' },
+                { id: 3, title: 'Telegram', delay: '300', icon: 'ph-duotone ph-telegram-logo', iconColor: 'text-sky-400', iconBg: 'bg-sky-500/10 border-sky-500/20', description: 'Kênh nhắn trực tiếp nhanh nhất nếu bạn muốn trao đổi dự án hoặc công việc.', link: 'https://t.me/quoctrisdev' }
+            ],
+            donate: {
+                bank: 'MBBank',
+                account: '00412042007',
+                name: 'NGUYEN QUOC ANH',
+                message: 'donate ne',
+                qrCodeUrl: 'https://img.vietqr.io/image/mbbank-00412042007-qr_only.png?addInfo=donate%20ne&accountName=NGUYEN%20QUOC%20ANH'
+            },
+            contact: {
+                email: 'quoctris.dev@gmail.com',
+                facebook: 'https://www.facebook.com/quoctris.dev/',
+                github: 'https://github.com/quoctridev',
+                telegram: 'https://t.me/quoctrisdev',
+                phone: '0793391878'
+            }
+        };
+
+        // Expose portfolioApp globally so Alpine.js can find it reliably
+        window.portfolioApp = function() {
+            return {
+                data: myPortfolioData,
+                mobileMenuOpen: false,
+                scrolled: false,
+                year: new Date().getFullYear(),
+                copied: false,
+                avatarRotation: 0,
+                avatarImage: '',
+                contactSending: false,
+                contactSuccess: '',
+                contactError: '',
+                contactForm: {
+                    name: '',
+                    replyTo: '',
+                    preferredContact: 'Telegram',
+                    topic: 'Trao đổi dự án',
+                    message: ''
+                },
+                
+                // Hàm Copy Số Tài Khoản
+                copyToClipboard(text) {
+                    navigator.clipboard.writeText(text).then(() => {
+                        this.copied = true;
+                        setTimeout(() => { this.copied = false; }, 2000);
+                    }).catch(err => {
+                        // Fallback in iframe if clipboard API fails
+                        const el = document.createElement('textarea');
+                        el.value = text;
+                        document.body.appendChild(el);
+                        el.select();
+                        document.execCommand('copy');
+                        document.body.removeChild(el);
+                        this.copied = true;
+                        setTimeout(() => { this.copied = false; }, 2000);
+                    });
+                },
+
+                async submitContactForm() {
+                    this.contactSuccess = '';
+                    this.contactError = '';
+
+                    const payload = {
+                        name: this.contactForm.name.trim(),
+                        replyTo: this.contactForm.replyTo.trim(),
+                        preferredContact: this.contactForm.preferredContact,
+                        topic: this.contactForm.topic,
+                        message: this.contactForm.message.trim()
+                    };
+
+                    if (!payload.name || !payload.replyTo || !payload.message) {
+                        this.contactError = 'Điền giúp mình tên, cách liên hệ và nội dung trước khi gửi.';
+                        return;
+                    }
+
+                    this.contactSending = true;
+
+                    try {
+                        const response = await fetch('/api/contact', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(payload)
+                        });
+
+                        const result = await response.json().catch(() => ({}));
+                        if (!response.ok) {
+                            throw new Error(result.error || 'Chưa gửi được thông tin. Thử lại sau.');
+                        }
+
+                        this.contactSuccess = 'Mình đã nhận thông tin. Sẽ chủ động liên hệ lại sớm.';
+                        this.contactForm = {
+                            name: '',
+                            replyTo: '',
+                            preferredContact: 'Telegram',
+                            topic: 'Trao đổi dự án',
+                            message: ''
+                        };
+                    } catch (error) {
+                        this.contactError = error.message || 'Có lỗi xảy ra khi gửi form.';
+                    } finally {
+                        this.contactSending = false;
+                    }
+                },
+
+                init() {
+                    this.avatarRotation = Math.round((Math.random() * 8 - 4) * 10) / 10;
+                    if (Array.isArray(this.data.about.avatarOptions) && this.data.about.avatarOptions.length) {
+                        const randomIndex = Math.floor(Math.random() * this.data.about.avatarOptions.length);
+                        this.avatarImage = this.data.about.avatarOptions[randomIndex];
+                    }
+
+                    // Initialize AOS after Alpine has rendered the DOM
+                    this.$nextTick(() => {
+                        if (typeof AOS !== 'undefined') {
+                            AOS.init({
+                                once: true,
+                                offset: 100,
+                                duration: 800,
+                                easing: 'ease-out-cubic',
+                            });
+                        }
+                    });
+                }
+            };
+        };
+    </script>
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        darkBg: '#1E2030',
+                        cardBg: '#2A2D45',
+                        primary: '#FF4FA3',
+                        primaryHover: '#FF2E8A',
+                        accent: '#00F5D4'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+        :root {
+            --night-base: #1e2030;
+            --night-elevated: #2a2d45;
+            --night-panel: rgba(42, 45, 69, 0.52);
+            --night-nav: rgba(30, 32, 48, 0.82);
+            --night-border: rgba(255, 255, 255, 0.08);
+            --neon-pink: #ff4fa3;
+            --neon-pink-soft: rgba(255, 79, 163, 0.24);
+            --neon-cyan: #00f5d4;
+            --neon-cyan-soft: rgba(0, 245, 212, 0.22);
+            --neon-violet-soft: rgba(163, 127, 255, 0.2);
+        }
+        
+        body {
+            background:
+                radial-gradient(circle at 15% 20%, rgba(255, 79, 163, 0.14), transparent 28%),
+                radial-gradient(circle at 85% 15%, rgba(0, 245, 212, 0.16), transparent 24%),
+                radial-gradient(circle at 50% 100%, rgba(163, 127, 255, 0.12), transparent 26%),
+                linear-gradient(180deg, #22253a 0%, #1b1d2d 48%, #141625 100%);
+            color: #F8FAFC;
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #171926;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, rgba(255, 79, 163, 0.88), rgba(0, 245, 212, 0.88));
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, rgba(255, 46, 138, 0.96), rgba(0, 245, 212, 0.96));
+        }
+
+        /* Glassmorphism utility */
+        .glass-nav {
+            background:
+                linear-gradient(90deg, rgba(255, 79, 163, 0.06), transparent 22%, rgba(0, 245, 212, 0.06)),
+                var(--night-nav);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 16px 40px rgba(7, 8, 16, 0.28);
+        }
+        
+        .glass-card {
+            background:
+                linear-gradient(155deg, rgba(255, 79, 163, 0.05), transparent 32%, rgba(0, 245, 212, 0.06)),
+                var(--night-panel);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--night-border);
+            box-shadow: 0 20px 50px rgba(8, 9, 18, 0.26);
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .glass-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 245, 212, 0.36);
+            box-shadow: 0 24px 60px rgba(8, 9, 18, 0.32), 0 0 0 1px rgba(255, 79, 163, 0.12);
+        }
+
+        .avatar-card {
+            transform-origin: center center;
+        }
+
+        .avatar-shell {
+            position: relative;
+            overflow: hidden;
+            animation: avatar-float 6s ease-in-out infinite;
+            background:
+                radial-gradient(circle at top, rgba(255, 79, 163, 0.22), transparent 36%),
+                radial-gradient(circle at bottom right, rgba(0, 245, 212, 0.18), transparent 32%),
+                linear-gradient(160deg, rgba(34, 37, 58, 0.94), rgba(17, 19, 31, 0.98));
+        }
+
+        .avatar-shell::before {
+            content: "";
+            position: absolute;
+            inset: -30%;
+            background: linear-gradient(120deg, transparent 35%, rgba(255, 255, 255, 0.12) 50%, transparent 65%);
+            animation: avatar-shine 5.5s linear infinite;
+        }
+
+        .avatar-shell::after {
+            content: "";
+            position: absolute;
+            inset: 18px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 1rem;
+            pointer-events: none;
+        }
+
+        .avatar-orb {
+            animation: avatar-orb 8s ease-in-out infinite;
+        }
+
+        .avatar-scan {
+            animation: avatar-scan 3.4s ease-in-out infinite;
+        }
+
+        .contact-field {
+            width: 100%;
+            border-radius: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(20, 22, 37, 0.68);
+            color: #f8fafc;
+            padding: 0.95rem 1rem;
+            outline: none;
+            transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+        }
+
+        .contact-field::placeholder {
+            color: rgba(226, 232, 240, 0.44);
+        }
+
+        .contact-field:focus {
+            border-color: rgba(0, 245, 212, 0.5);
+            box-shadow: 0 0 0 4px rgba(0, 245, 212, 0.08), 0 0 24px rgba(255, 79, 163, 0.12);
+            transform: translateY(-1px);
+        }
+
+        @keyframes avatar-float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+        }
+
+        @keyframes avatar-shine {
+            0% { transform: translateX(-60%) rotate(12deg); }
+            100% { transform: translateX(70%) rotate(12deg); }
+        }
+
+        @keyframes avatar-orb {
+            0%, 100% { transform: scale(1) translate(0, 0); }
+            50% { transform: scale(1.08) translate(6px, -8px); }
+        }
+
+        @keyframes avatar-scan {
+            0% { transform: translateY(-120%); opacity: 0; }
+            15% { opacity: 0.8; }
+            85% { opacity: 0.8; }
+            100% { transform: translateY(220%); opacity: 0; }
+        }
+        
+        [x-cloak] { display: none !important; }
+    </style>
+</head>
+<body class="antialiased overflow-x-hidden relative w-full max-w-full" 
+      x-data="portfolioApp()" 
+      @scroll.window="scrolled = (window.pageYOffset > 20)">
+
+    <!-- Background Decorative Elements -->
+    <div class="fixed top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
+        <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-primary/20 blur-[120px]"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-accent/20 blur-[120px]"></div>
+    </div>
+
+    <!-- Navigation -->
+    <header :class="{ 'glass-nav py-4': scrolled, 'py-6 bg-transparent': !scrolled }"
+            class="fixed top-0 w-full z-50 transition-all duration-300">
+        <div class="container mx-auto px-6 md:px-12 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold tracking-tighter flex items-center gap-2">
+                <i class="ph-fill ph-terminal-window text-primary"></i>
+                <span x-html="data.logo"></span>
+            </a>
+
+            <!-- Desktop Menu -->
+            <nav class="hidden md:lg:flex gap-6 xl:gap-8 items-center text-sm font-medium text-slate-300">
+                <template x-for="item in data.menu" :key="item.id">
+                    <a :href="item.link" class="hover:text-white transition-colors" x-text="item.label"></a>
+                </template>
+                <a href="#contact" class="px-5 py-2.5 bg-primary/10 text-primary hover:bg-primary hover:text-white rounded-lg transition-all border border-primary/20">
+                    Liên hệ
+                </a>
+            </nav>
+
+            <!-- Mobile Menu Toggle -->
+            <button @click="mobileMenuOpen = !mobileMenuOpen" class="lg:hidden text-slate-300 hover:text-white focus:outline-none">
+                <i class="ph ph-list text-3xl" x-show="!mobileMenuOpen"></i>
+                <i class="ph ph-x text-3xl" x-show="mobileMenuOpen" x-cloak></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div x-show="mobileMenuOpen" 
+             x-transition:enter="transition ease-out duration-200"
+             x-transition:enter-start="opacity-0 -translate-y-4"
+             x-transition:enter-end="opacity-100 translate-y-0"
+             x-transition:leave="transition ease-in duration-150"
+             x-transition:leave-start="opacity-100 translate-y-0"
+             x-transition:leave-end="opacity-0 -translate-y-4"
+             @click.away="mobileMenuOpen = false"
+             class="lg:hidden absolute top-full left-0 w-full glass-nav border-t border-slate-800 shadow-xl py-4 flex flex-col items-center gap-4" x-cloak>
+            <template x-for="item in data.menu" :key="item.id">
+                <a :href="item.link" @click="mobileMenuOpen = false" class="text-slate-300 hover:text-white w-full text-center py-2" x-text="item.label"></a>
+            </template>
+            <a href="#contact" @click="mobileMenuOpen = false" class="text-primary font-medium w-full text-center py-2">Liên hệ</a>
+        </div>
+    </header>
+
+    <main class="overflow-x-hidden w-full">
+        <!-- Hero Section -->
+        <section id="home" class="min-h-screen flex items-center pt-20 pb-10">
+            <div class="container mx-auto px-6 md:px-12 grid md:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-up" data-aos-duration="1000">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-800/50 border border-slate-700 text-slate-300 text-sm mb-6">
+                        <span class="relative flex h-2 w-2">
+                          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                          <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                        </span>
+                        <span x-text="data.hero.availability"></span>
+                    </div>
+                    <h1 class="text-5xl md:text-7xl font-bold leading-tight mb-4 break-words">
+                        Xin chào, mình là <br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent" x-text="data.hero.name"></span>
+                    </h1>
+                    <h2 class="text-2xl md:text-3xl font-medium text-slate-400 mb-6 break-words" x-text="data.hero.title"></h2>
+                    <p class="text-slate-400 text-lg mb-8 max-w-lg leading-relaxed" x-text="data.hero.description"></p>
+                    
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#contact" class="px-8 py-3.5 bg-primary hover:bg-primaryHover text-white font-medium rounded-lg transition-colors flex items-center gap-2 shadow-lg shadow-primary/25">
+                            <i class="ph ph-paper-plane-tilt"></i> Liên hệ ngay
+                        </a>
+                        <a :href="data.hero.cvLink" download="nguyen-quoc-anh-cv.pdf" class="px-8 py-3.5 bg-slate-800 hover:bg-slate-700 text-white font-medium rounded-lg transition-colors flex items-center gap-2 border border-slate-700">
+                            <i class="ph ph-file-pdf"></i> Tải CV
+                        </a>
+                        <a :href="data.contact.github" target="_blank" class="px-8 py-3.5 bg-slate-800 hover:bg-slate-700 text-white font-medium rounded-lg transition-colors flex items-center gap-2 border border-slate-700">
+                            <i class="ph ph-github-logo"></i> GitHub
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="relative hidden md:block" data-aos="fade-left" data-aos-duration="1200">
+                    <!-- Abstract Tech Graphic -->
+                    <div class="relative w-full aspect-square max-w-md mx-auto">
+                        <div class="absolute inset-0 bg-gradient-to-tr from-primary/20 to-accent/20 rounded-2xl rotate-3 scale-105 blur-sm"></div>
+                        <div class="absolute inset-0 bg-cardBg border border-slate-700 rounded-2xl p-6 shadow-2xl flex flex-col relative overflow-hidden">
+                            <!-- Fake code window -->
+                            <div class="flex gap-2 mb-6">
+                                <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                                <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                                <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                            </div>
+                            <div class="font-mono text-sm text-slate-300 space-y-2 opacity-80">
+                                <p><span class="text-pink-400">const</span> <span class="text-blue-400">developer</span> = {</p>
+                                <p class="pl-4">name: <span class="text-green-400" x-text="`'${data.hero.name}'`"></span>,</p>
+                                <p class="pl-4">nickname: <span class="text-orange-400">'Trí'</span>,</p>
+                                <p class="pl-4">born: <span class="text-green-400">'12/04/2007'</span>,</p>
+                                <p class="pl-4">location: <span class="text-green-400">'Hai Phong'</span>,</p>
+                                <p class="pl-4">stack: [<span class="text-green-400">'Java'</span>, <span class="text-green-400">'Spring Boot'</span>, <span class="text-green-400">'MSSQL'</span>],</p>
+                                <p class="pl-4">focus: <span class="text-green-400">'Backend systems in production'</span></p>
+                                <p>};</p>
+                                <p class="mt-4"><span class="text-pink-400">developer</span>.<span class="text-blue-400">build</span>();</p>
+                                <p class="text-green-500 mt-2">> Portfolio updated with real profile...</p>
+                                <p class="text-green-500">> Projects loaded from GitHub...</p>
+                            </div>
+                            <i class="ph-duotone ph-rocket-launch absolute -bottom-6 -right-6 text-9xl text-slate-800/50"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-20 bg-slate-900/50 relative border-y border-slate-800">
+            <div class="container mx-auto px-6 md:px-12">
+                <div class="flex flex-col md:flex-row gap-12 items-center">
+                    <div class="md:w-1/3" data-aos="fade-right">
+                        <div class="avatar-card relative w-64 h-64 mx-auto md:w-full md:h-auto md:aspect-square rounded-2xl" :style="`transform: rotate(${avatarRotation}deg)`">
+                            <div class="avatar-orb absolute -top-6 -right-4 w-28 h-28 rounded-full bg-primary/25 blur-2xl"></div>
+                            <div class="avatar-orb absolute -bottom-6 -left-3 w-24 h-24 rounded-full bg-accent/20 blur-2xl" style="animation-delay: -2s;"></div>
+                            <div class="avatar-shell w-full h-full rounded-2xl overflow-hidden border border-slate-700 group flex flex-col justify-end">
+                                <template x-if="avatarImage">
+                                    <img :src="avatarImage" alt="Avatar Nguyen Quoc Anh" class="absolute inset-0 w-full h-full object-cover object-center">
+                                </template>
+                                <template x-if="!avatarImage">
+                                    <div class="absolute inset-0 flex items-center justify-center">
+                                        <div class="relative z-10 w-28 h-28 rounded-full bg-gradient-to-br from-primary/30 via-slate-700 to-accent/30 border border-white/10 flex items-center justify-center shadow-2xl shadow-primary/10">
+                                            <span class="text-4xl font-black tracking-tight text-white">TRI</span>
+                                        </div>
+                                    </div>
+                                </template>
+                                <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/35 to-transparent"></div>
+                                <div class="avatar-scan absolute left-4 right-4 h-24 bg-gradient-to-b from-transparent via-white/10 to-transparent blur-md pointer-events-none"></div>
+                                <div class="relative z-10 w-full px-6 pb-6 text-left">
+                                    <p class="text-xl font-bold text-slate-100">Nguyễn Quốc Anh</p>
+                                    <p class="text-sm text-slate-300 mt-2">Fullstack Developer</p>
+                                    <div class="mt-5 flex flex-wrap gap-2">
+                                        <span class="px-3 py-1 rounded-full border border-slate-600 bg-slate-800/65 text-xs text-slate-200">Bee Logistics</span>
+                                        <span class="px-3 py-1 rounded-full border border-slate-600 bg-slate-800/65 text-xs text-slate-200">Hải Phòng</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="md:w-2/3" data-aos="fade-left">
+                        <h2 class="text-3xl md:text-4xl font-bold mb-6 flex items-center gap-3">
+                            <i class="ph-duotone ph-identification-card text-primary"></i> Giới thiệu
+                        </h2>
+                        <div class="prose prose-invert prose-lg text-slate-400 max-w-none">
+                            <template x-for="paragraph in data.about.paragraphs">
+                                <p class="mb-4" x-html="paragraph"></p>
+                            </template>
+                            
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8">
+                                <template x-for="item in data.about.details" :key="item.id">
+                                    <div class="flex items-center gap-3 bg-slate-800/50 p-4 rounded-lg border border-slate-700/50">
+                                        <div class="w-10 h-10 rounded-full flex items-center justify-center" :class="item.iconBg">
+                                            <i class="text-xl" :class="item.icon"></i>
+                                        </div>
+                                        <div>
+                                            <p class="text-xs text-slate-500 uppercase font-semibold" x-text="item.label"></p>
+                                            <p class="font-medium text-slate-200" x-text="item.value"></p>
+                                        </div>
+                                    </div>
+                                </template>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="py-24">
+            <div class="container mx-auto px-6 md:px-12">
+                <div class="text-center max-w-2xl mx-auto mb-16" data-aos="fade-up">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Kỹ năng chính</h2>
+                    <p class="text-slate-400">Stack mình đang dùng xoay quanh Java Backend, Spring Boot, cơ sở dữ liệu và triển khai hệ thống vào môi trường thực tế.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
+                    <!-- Dynamic Skill Categories -->
+                    <template x-for="category in data.skills" :key="category.id">
+                        <div class="glass-card p-8 rounded-2xl" data-aos="fade-up" :data-aos-delay="category.delay">
+                            <div class="w-14 h-14 rounded-xl flex items-center justify-center mb-6 border" :class="category.iconBg">
+                                <i class="text-3xl" :class="`${category.icon} ${category.iconColor}`"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-4 text-slate-200" x-text="category.title"></h3>
+                            <p class="text-slate-400 text-sm mb-6 leading-relaxed" x-text="category.description"></p>
+                            <ul class="space-y-3">
+                                <template x-for="item in category.items">
+                                    <li class="flex items-center gap-3 text-slate-300">
+                                        <i class="ph-fill ph-check-circle" :class="category.checkColor"></i> 
+                                        <span x-text="item"></span>
+                                    </li>
+                                </template>
+                            </ul>
+                        </div>
+                    </template>
+                </div>
+
+                <!-- Skill Tags Marquee -->
+                <div class="mt-16 flex flex-wrap justify-center gap-4" data-aos="fade-in" data-aos-delay="500">
+                    <template x-for="tag in data.skillTags">
+                        <span class="px-4 py-2 bg-slate-800 rounded-full text-sm font-medium text-slate-300 border border-slate-700" x-text="tag"></span>
+                    </template>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education" class="py-24 relative border-t border-slate-800/50">
+            <div class="container mx-auto px-6 md:px-12">
+                <div class="text-center max-w-2xl mx-auto mb-16" data-aos="fade-up">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Học tập & công việc</h2>
+                    <p class="text-slate-400">Tóm tắt nhanh chặng học tập trước đây, kinh nghiệm tại VAWAY và công việc hiện tại ở Bee Logistics.</p>
+                </div>
+
+                <!-- Timeline Layout -->
+                <div class="max-w-3xl mx-auto space-y-8 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:ml-[1.25rem] before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-slate-700 before:to-transparent">
+                    
+                    <template x-for="edu in data.education" :key="edu.id">
+                        <div class="relative flex items-start gap-6" data-aos="fade-up" :data-aos-delay="edu.delay">
+                            <div class="flex items-center justify-center w-10 h-10 rounded-full border border-slate-700 bg-slate-800 text-slate-300 shadow shrink-0 z-10 mt-1">
+                                <i class="text-xl" :class="`${edu.icon} ${edu.iconColor}`"></i>
+                            </div>
+                            <div class="glass-card p-6 rounded-2xl flex-1 hover:-translate-y-1 transition-transform duration-300">
+                                <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-2">
+                                    <h3 class="font-bold text-xl text-slate-200" x-text="edu.degree"></h3>
+                                    <span class="px-3 py-1 border rounded-full text-xs font-medium w-fit mt-2 sm:mt-0" 
+                                          :class="edu.periodBg" 
+                                          x-text="edu.period"></span>
+                                </div>
+                                <p class="text-slate-300 font-medium mb-3" x-text="edu.school"></p>
+                                <p class="text-slate-400 text-sm leading-relaxed">
+                                    <template x-if="edu.highlight">
+                                        <span class="block mb-2 text-emerald-400 font-medium" x-text="edu.highlight"></span>
+                                    </template>
+                                    <span x-text="edu.description"></span>
+                                </p>
+                            </div>
+                        </div>
+                    </template>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-20 bg-slate-900/50 relative border-y border-slate-800">
+            <div class="container mx-auto px-6 md:px-12">
+                <div class="flex items-center gap-3 mb-12" data-aos="fade-right">
+                    <i class="ph-duotone ph-briefcase text-3xl text-primary"></i>
+                    <h2 class="text-3xl md:text-4xl font-bold">Dự án nổi bật</h2>
+                </div>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Dynamic Projects -->
+                    <template x-for="project in data.projects" :key="project.id">
+                        <div class="glass-card rounded-2xl overflow-hidden group flex flex-col" data-aos="fade-up">
+                            <div class="h-48 bg-slate-800 relative overflow-hidden flex items-center justify-center border-b border-slate-700">
+                                <div class="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-500/20 group-hover:scale-110 transition-transform duration-500"></div>
+                                <i class="text-7xl text-slate-500 group-hover:text-blue-400 transition-colors z-10" :class="project.icon"></i>
+                            </div>
+                            <div class="p-8 flex flex-col flex-grow">
+                                <h3 class="text-2xl font-bold mb-3 text-slate-200 group-hover:text-primary transition-colors" x-text="project.title"></h3>
+                                <p class="text-slate-400 mb-6 leading-relaxed flex-grow" x-text="project.description"></p>
+                                <div class="flex flex-wrap gap-2 mb-6">
+                                    <template x-for="tag in project.tags">
+                                        <span class="px-3 py-1 border rounded-md text-xs font-medium" :class="tag.class" x-text="tag.name"></span>
+                                    </template>
+                                </div>
+                                <a :href="project.link" target="_blank" class="inline-flex items-center gap-2 text-primary hover:text-primaryHover font-medium transition-colors mt-auto">
+                                    Xem mã nguồn <i class="ph-bold ph-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certifications Section -->
+        <section id="certifications" class="py-24">
+            <div class="container mx-auto px-6 md:px-12">
+                <div class="text-center max-w-2xl mx-auto mb-16" data-aos="fade-up">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Thành tích</h2>
+                    <p class="text-slate-400">Những dấu mốc nổi bật trong quá trình học tập và tham gia hoạt động tại FPT.</p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <!-- Dynamic Certifications -->
+                    <template x-for="cert in data.certifications" :key="cert.id">
+                        <div class="glass-card p-6 rounded-2xl flex items-center gap-6" data-aos="fade-up" :data-aos-delay="cert.delay">
+                            <div class="w-16 h-16 rounded-full flex items-center justify-center border shrink-0" :class="cert.iconBg">
+                                <i class="text-4xl" :class="`${cert.icon} ${cert.iconColor}`"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-slate-200" x-text="cert.title"></h3>
+                                <p class="text-slate-400 text-sm mt-1" x-text="cert.issuer"></p>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+            </div>
+        </section>
+
+        <!-- Affiliate / Recommendations Section -->
+        <section id="affiliates" class="py-24 relative border-t border-slate-800">
+            <div class="container mx-auto px-6 md:px-12">
+                <div class="text-center max-w-2xl mx-auto mb-16" data-aos="fade-up">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4 flex items-center justify-center gap-3">
+                        <i class="ph-duotone ph-link text-primary"></i> Kết nối với mình
+                    </h2>
+                    <p class="text-slate-400">Các kênh mình dùng thường xuyên để chia sẻ project và trao đổi công việc.</p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Dynamic Affiliates -->
+                    <template x-for="aff in data.affiliates" :key="aff.id">
+                        <div class="glass-card p-6 rounded-2xl flex flex-col h-full" data-aos="fade-up" :data-aos-delay="aff.delay">
+                            <div class="flex items-center gap-4 mb-4">
+                                <div class="w-12 h-12 rounded-lg flex items-center justify-center border shrink-0" :class="aff.iconBg">
+                                    <i class="text-2xl" :class="`${aff.icon} ${aff.iconColor}`"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-slate-200" x-text="aff.title"></h3>
+                            </div>
+                            <p class="text-slate-400 text-sm mb-6 flex-grow" x-text="aff.description"></p>
+                            <a :href="aff.link" target="_blank" class="w-full py-2.5 rounded-lg border border-slate-600 hover:border-primary text-slate-300 hover:text-primary transition-colors text-center text-sm font-medium flex items-center justify-center gap-2">
+                                Mở liên kết <i class="ph-bold ph-arrow-up-right"></i>
+                            </a>
+                        </div>
+                    </template>
+                </div>
+            </div>
+        </section>
+
+        <!-- Donate / Support Section -->
+        <section id="donate" class="py-20 bg-slate-900/50 relative border-t border-slate-800">
+            <div class="container mx-auto px-6 md:px-12">
+                <div class="max-w-4xl mx-auto glass-card rounded-3xl overflow-hidden border border-slate-700/50" data-aos="fade-up">
+                    <div class="grid md:grid-cols-2">
+                        <div class="p-8 md:p-12 flex flex-col justify-center border-b md:border-b-0 md:border-r border-slate-700/50">
+                            <h2 class="text-3xl font-bold mb-4 flex items-center gap-3">
+                                <i class="ph-duotone ph-coffee text-orange-400"></i> Ủng hộ mình
+                            </h2>
+                            <p class="text-slate-400 mb-8 leading-relaxed">
+                                Nếu bạn thấy các project của mình hữu ích và muốn ủng hộ thêm một ly cà phê, có thể chuyển khoản nhanh qua QR bên dưới.
+                            </p>
+
+                            <div class="space-y-4">
+                                <div>
+                                    <p class="text-xs text-slate-500 uppercase font-semibold mb-1">Ngân hàng</p>
+                                    <p class="font-bold text-lg text-slate-200" x-text="data.donate.bank"></p>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-slate-500 uppercase font-semibold mb-1">Chủ tài khoản</p>
+                                    <p class="font-bold text-lg text-slate-200" x-text="data.donate.name"></p>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-slate-500 uppercase font-semibold mb-1">Số tài khoản</p>
+                                    <div class="flex items-center gap-3">
+                                        <p class="font-mono font-bold text-xl sm:text-2xl text-primary break-all" x-text="data.donate.account"></p>
+                                        <button @click="copyToClipboard(data.donate.account)" 
+                                                class="w-8 h-8 rounded bg-slate-800 hover:bg-slate-700 flex items-center justify-center text-slate-300 transition-colors shrink-0"
+                                                title="Sao chép số tài khoản">
+                                            <i class="ph-bold" :class="copied ? 'ph-check text-green-500' : 'ph-copy'"></i>
+                                        </button>
+                                    </div>
+                                    <p x-show="copied" x-transition class="text-green-500 text-xs mt-1 font-medium">Đã sao chép.</p>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-slate-500 uppercase font-semibold mb-1">Nội dung chuyển khoản</p>
+                                    <p class="font-medium text-slate-300" x-text="data.donate.message"></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-8 md:p-12 flex items-center justify-center bg-slate-800/30">
+                            <div class="bg-white p-4 rounded-2xl shadow-xl w-52 h-52 sm:w-64 sm:h-64 relative group">
+                                <img :src="data.donate.qrCodeUrl" alt="Donate QR Code" class="w-full h-full object-contain rounded-xl">
+                                <!-- QR Overlay scan effect -->
+                                <div class="absolute inset-0 border-2 border-primary rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                                    <div class="w-full h-1 bg-primary absolute top-0 animate-[scan_2s_ease-in-out_infinite]"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <style>
+                @keyframes scan {
+                    0% { top: 0; opacity: 0; }
+                    10% { opacity: 1; }
+                    90% { opacity: 1; }
+                    100% { top: 100%; opacity: 0; }
+                }
+            </style>
+        </section>
+
+        <!-- CTA / Contact Section -->
+        <section id="contact" class="py-24 relative overflow-hidden border-t border-slate-800">
+            <div class="absolute inset-0 flex items-center justify-center -z-10 opacity-30 pointer-events-none">
+                <div class="w-full max-w-3xl h-64 bg-primary blur-[100px] rounded-full"></div>
+            </div>
+
+            <div class="container mx-auto px-6 md:px-12" data-aos="zoom-in">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6">Liên hệ với mình</h2>
+                <p class="text-slate-400 text-lg mb-10 max-w-2xl">
+                    Điền form ngắn bên dưới. Mình sẽ nhận thông tin và chủ động liên hệ lại theo kênh bạn để lại.
+                </p>
+                
+                <div class="grid lg:grid-cols-[1.15fr_0.85fr] gap-8 items-stretch">
+                    <form @submit.prevent="submitContactForm()" class="glass-card rounded-[28px] p-6 md:p-8 h-full flex flex-col">
+                        <div class="flex items-start justify-between gap-4 mb-6">
+                            <div>
+                                <p class="text-xs uppercase tracking-[0.3em] text-primary/80 mb-2">Contact Form</p>
+                                <h3 class="text-2xl font-bold text-slate-100">Để lại thông tin, mình liên hệ lại</h3>
+                                <p class="text-slate-400 mt-2">Phù hợp nếu bạn cần trao đổi dự án, thuê làm, hợp tác hoặc muốn mình chủ động nhắn lại.</p>
+                            </div>
+                            <div class="hidden sm:flex w-14 h-14 rounded-2xl border border-primary/25 bg-primary/10 items-center justify-center text-primary shadow-lg shadow-primary/10">
+                                <i class="ph-bold ph-paper-plane-tilt text-2xl"></i>
+                            </div>
+                        </div>
+
+                        <div class="grid sm:grid-cols-2 gap-4 mb-4">
+                            <label class="block">
+                                <span class="text-sm text-slate-300 mb-2 block">Tên của bạn</span>
+                                <input x-model="contactForm.name" type="text" class="contact-field" placeholder="Ví dụ: Nguyễn Văn A">
+                            </label>
+                            <label class="block">
+                                <span class="text-sm text-slate-300 mb-2 block">Cách liên hệ lại</span>
+                                <input x-model="contactForm.replyTo" type="text" class="contact-field" placeholder="SĐT, email hoặc Telegram">
+                            </label>
+                        </div>
+
+                        <div class="grid sm:grid-cols-2 gap-4 mb-4">
+                            <label class="block">
+                                <span class="text-sm text-slate-300 mb-2 block">Kênh phản hồi mong muốn</span>
+                                <select x-model="contactForm.preferredContact" class="contact-field">
+                                    <option>Telegram</option>
+                                    <option>Điện thoại</option>
+                                    <option>Email</option>
+                                    <option>Facebook</option>
+                                </select>
+                            </label>
+                            <label class="block">
+                                <span class="text-sm text-slate-300 mb-2 block">Nội dung chính</span>
+                                <select x-model="contactForm.topic" class="contact-field">
+                                    <option>Trao đổi dự án</option>
+                                    <option>Báo giá / thuê làm</option>
+                                    <option>Hợp tác công việc</option>
+                                    <option>Tuyển dụng</option>
+                                    <option>Khác</option>
+                                </select>
+                            </label>
+                        </div>
+
+                        <label class="block">
+                            <span class="text-sm text-slate-300 mb-2 block">Bạn cần gì ở mình?</span>
+                            <textarea x-model="contactForm.message" rows="5" class="contact-field resize-none" placeholder="Mô tả ngắn về nhu cầu, thời gian, ngân sách hoặc cách bạn muốn mình phản hồi..."></textarea>
+                        </label>
+
+                        <p x-show="contactSuccess" x-transition class="mt-4 rounded-2xl border border-emerald-400/20 bg-emerald-500/10 px-4 py-3 text-sm text-emerald-300" x-text="contactSuccess"></p>
+                        <p x-show="contactError" x-transition class="mt-4 rounded-2xl border border-rose-400/20 bg-rose-500/10 px-4 py-3 text-sm text-rose-300" x-text="contactError"></p>
+
+                        <div class="mt-auto pt-6 flex flex-col sm:flex-row gap-4 sm:items-center sm:justify-between">
+                            <p class="text-sm text-slate-500">Thông tin sẽ được gửi riêng để mình biết và chủ động liên hệ lại.</p>
+                            <button type="submit" :disabled="contactSending" class="min-w-[220px] px-7 py-4 rounded-2xl text-white font-bold bg-gradient-to-r from-primary via-[#ff3c98] to-[#ff6bb7] shadow-[0_10px_35px_rgba(255,79,163,0.35)] hover:shadow-[0_14px_45px_rgba(255,79,163,0.5)] hover:-translate-y-0.5 disabled:opacity-70 disabled:cursor-not-allowed transition-all duration-300 flex items-center justify-center gap-3">
+                                <i class="ph-bold ph-paper-plane-tilt text-xl"></i>
+                                <span x-text="contactSending ? 'Đang gửi...' : 'Liên hệ ngay'"></span>
+                            </button>
+                        </div>
+                    </form>
+
+                    <div class="glass-card rounded-[28px] p-6 md:p-8 h-full flex flex-col">
+                        <p class="text-xs uppercase tracking-[0.3em] text-accent/80 mb-2">Direct</p>
+                        <h3 class="text-2xl font-bold text-slate-100">Hoặc kết nối trực tiếp</h3>
+                        <p class="text-slate-400 mt-2">Nếu bạn muốn nhắn nhanh, vẫn có thể đi thẳng qua Telegram, email hoặc social của mình.</p>
+
+                        <div class="mt-6 space-y-3">
+                            <a :href="data.contact.telegram" target="_blank" class="w-full px-5 py-4 rounded-2xl bg-[#2AABEE]/10 text-[#57c8ff] hover:bg-[#2AABEE] hover:text-white font-bold border border-[#2AABEE]/30 transition-all duration-300 flex items-center justify-between gap-3">
+                                <span class="flex items-center gap-3"><i class="ph-fill ph-telegram-logo text-2xl"></i> Telegram</span>
+                                <i class="ph-bold ph-arrow-up-right"></i>
+                            </a>
+                            <a :href="`mailto:${data.contact.email}`" class="w-full px-5 py-4 rounded-2xl bg-white text-slate-900 hover:bg-slate-200 font-bold transition-colors flex items-center justify-between gap-3">
+                                <span class="flex items-center gap-3"><i class="ph-bold ph-envelope-simple text-xl"></i> Email</span>
+                                <i class="ph-bold ph-arrow-up-right"></i>
+                            </a>
+                            <button @click="copyToClipboard(data.contact.phone)" class="w-full px-5 py-4 rounded-2xl bg-slate-800 text-slate-100 hover:bg-slate-700 font-bold border border-slate-700 transition-colors flex items-center justify-between gap-3">
+                                <span class="flex items-center gap-3"><i class="ph-bold ph-phone text-xl"></i> Sao chép SĐT</span>
+                                <i class="ph-bold ph-copy"></i>
+                            </button>
+                        </div>
+
+                        <div class="mt-auto pt-6 border-t border-white/5 flex gap-4">
+                            <a :href="data.contact.facebook" target="_blank" class="w-14 h-14 rounded-2xl bg-slate-800 hover:bg-[#1877F2] border border-slate-700 hover:border-[#1877F2] flex items-center justify-center text-slate-300 hover:text-white transition-all shadow-lg hover:shadow-[#1877F2]/30" title="Facebook">
+                                <i class="ph-fill ph-facebook-logo text-2xl"></i>
+                            </a>
+                            <a :href="data.contact.github" target="_blank" class="w-14 h-14 rounded-2xl bg-slate-800 hover:bg-[#333] border border-slate-700 hover:border-[#333] flex items-center justify-center text-slate-300 hover:text-white transition-all shadow-lg hover:shadow-white/10" title="GitHub">
+                                <i class="ph-fill ph-github-logo text-2xl"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="border-t border-slate-800 py-8 text-center text-slate-500 text-sm">
+        <div class="container mx-auto px-6">
+            <p>&copy; <span x-text="year"></span> <span x-text="data.hero.name"></span>. All rights reserved.</p>
+        </div>
+    </footer>
+
+
+</body>
+</html>

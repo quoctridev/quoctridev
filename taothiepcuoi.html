@@ -1,0 +1,494 @@
+<!doctype html>
+<html lang="vi">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Thiệp mời cưới - Nền hồng (HTML/CSS/JS)</title>
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;600&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --rose-50: #fff1f2;
+      --rose-100: #ffe4e6;
+      --rose-200: #fecdd3;
+      --rose-300: #fda4af;
+      --rose-400: #fb7185;
+      --rose-500: #f43f5e;
+      --rose-600: #e11d48;
+      --text: #5f0f1b;
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--text);
+      background: linear-gradient(180deg, var(--rose-200), var(--rose-100), var(--rose-200));
+      font-family: Poppins, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+    }
+
+    .container {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 24px;
+      display: grid;
+      gap: 24px
+    }
+
+    @media(min-width:900px) {
+      .container {
+        grid-template-columns: 1fr 1fr
+      }
+    }
+
+    .card-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center
+    }
+
+    .card {
+      position: relative;
+      width: 380px;
+      max-width: 90vw;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, .7);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, .08);
+      overflow: hidden
+    }
+
+    .card-inner {
+      padding: 28px
+    }
+
+    .badge {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      font-size: 11px;
+      color: #b91c1c
+    }
+
+    .names {
+      font-family: "Great Vibes", cursive;
+      font-size: 52px;
+      line-height: 1;
+      text-align: center;
+      color: #9f1239;
+      margin: 12px 0
+    }
+
+    .amp {
+      color: #fb7185;
+      padding: 0 10px
+    }
+
+    .subtitle {
+      font-family: "Playfair Display", serif;
+      text-align: center;
+      color: #7f1d1d;
+      margin: 8px 0 0
+    }
+
+    .details {
+      margin-top: 16px;
+      text-align: center;
+      color: #7f1d1d
+    }
+
+    .details p {
+      margin: 4px 0;
+      font-size: 14px
+    }
+
+    .qr-wrap {
+      margin-top: 18px;
+      display: flex;
+      flex-direction: column;
+      align-items: center
+    }
+
+    .qr-box {
+      background: white;
+      padding: 10px;
+      border-radius: 14px;
+      border: 1px solid #ffe4e6;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, .05)
+    }
+
+    .btn {
+      appearance: none;
+      border: 0;
+      border-radius: 12px;
+      padding: 10px 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform .05s ease, box-shadow .2s ease;
+    }
+
+    .btn:active {
+      transform: translateY(1px)
+    }
+
+    .btn-primary {
+      background: #e11d48;
+      color: white
+    }
+
+    .btn-primary:hover {
+      background: #be123c
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: #9f1239
+    }
+
+    .panel {
+      border-radius: 18px;
+      background: rgba(255, 255, 255, .55);
+      backdrop-filter: blur(8px);
+      padding: 22px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, .06);
+      border: 1px solid #ffe4e6
+    }
+
+    .panel h2 {
+      font-family: "Playfair Display", serif;
+      margin: 0 0 12px 0;
+      color: #7f1d1d
+    }
+
+    .grid {
+      display: grid;
+      gap: 12px
+    }
+
+    @media(min-width:700px) {
+      .grid.two {
+        grid-template-columns: 1fr 1fr
+      }
+    }
+
+    label {
+      font-size: 13px;
+      color: #7f1d1d;
+      display: block;
+      margin-bottom: 6px
+    }
+
+    input[type="text"],
+    input[type="url"],
+    textarea {
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid #ffe4e6;
+      background: rgba(255, 255, 255, .85);
+      padding: 10px 12px;
+      font-size: 14px;
+      color: #7f1d1d
+    }
+
+    .row {
+      display: flex;
+      align-items: center;
+      gap: 10px
+    }
+
+    .note {
+      font-size: 12px;
+      color: #7f1d1d;
+      opacity: .8
+    }
+
+    .footer {
+      padding: 24px;
+      text-align: center;
+      font-size: 12px;
+      color: #7f1d1d;
+      opacity: .8
+    }
+
+    .float-blob {
+      position: absolute;
+      border-radius: 999px;
+      filter: blur(20px);
+      opacity: .6
+    }
+
+    .blob-a {
+      width: 120px;
+      height: 120px;
+      background: #fda4af;
+      top: -30px;
+      left: -30px;
+      animation: bob 6s ease-in-out infinite
+    }
+
+    .blob-b {
+      width: 160px;
+      height: 160px;
+      background: #fecdd3;
+      right: -40px;
+      bottom: -40px;
+      animation: bob2 7s ease-in-out infinite
+    }
+
+    @keyframes bob {
+
+      0%,
+      100% {
+        transform: translateY(0)
+      }
+
+      50% {
+        transform: translateY(-10px)
+      }
+    }
+
+    @keyframes bob2 {
+
+      0%,
+      100% {
+        transform: translateY(0)
+      }
+
+      50% {
+        transform: translateY(12px)
+      }
+    }
+
+    .switch {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer
+    }
+
+    .switch input {
+      display: none
+    }
+
+    .switch span {
+      width: 40px;
+      height: 22px;
+      background: #fecdd3;
+      border-radius: 999px;
+      position: relative;
+      transition: background .2s
+    }
+
+    .switch span::after {
+      content: "";
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      top: 2px;
+      left: 2px;
+      border-radius: 50%;
+      background: white;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, .2);
+      transition: left .2s
+    }
+
+    .switch input:checked+span {
+      background: #fb7185
+    }
+
+    .switch input:checked+span::after {
+      left: 20px
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <!-- PREVIEW CARD -->
+    <div class="card-wrap">
+      <div class="card" id="card">
+        <div class="float-blob blob-a"></div>
+        <div class="float-blob blob-b"></div>
+        <div class="card-inner">
+          <div class="badge">Wedding Invitation</div>
+          <h1 class="names"><span id="nameBride">Lan</span><span class="amp">&amp;</span><span
+              id="nameGroom">Minh</span></h1>
+          <p class="subtitle">Trân trọng kính mời đến dự lễ thành hôn của chúng tôi</p>
+          <div class="details">
+            <p><span id="date">Chủ nhật, 12.10.2025</span> • <span id="time">17:30</span></p>
+            <p id="venue">The Rose Garden, 123 Đường Hoa, Q.1, TP.HCM</p>
+          </div>
+          <div id="qrSection" class="qr-wrap">
+            <div class="qr-box">
+              <div id="qrcode"></div>
+            </div>
+            <div style="margin-top:8px">
+              <button class="btn btn-ghost" id="btnDownloadQR">Tải QR mừng cưới</button>
+            </div>
+          </div>
+          <div style="text-align:center; margin-top:16px">
+            <button class="btn btn-primary" id="btnDownloadCard">Tải thiệp (PNG)</button>
+          </div>
+          <audio id="bgm" preload="none"></audio>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTROL PANEL -->
+    <div class="panel">
+      <h2>Tuỳ chỉnh thiệp</h2>
+      <div class="grid two">
+        <div>
+          <label for="inpBride">Tên cô dâu</label>
+          <input id="inpBride" type="text" value="Lan" />
+        </div>
+        <div>
+          <label for="inpGroom">Tên chú rể</label>
+          <input id="inpGroom" type="text" value="Minh" />
+        </div>
+      </div>
+      <div class="grid two" style="margin-top:12px">
+        <div>
+          <label for="inpDate">Ngày</label>
+          <input id="inpDate" type="text" value="Chủ nhật, 12.10.2025" />
+        </div>
+        <div>
+          <label for="inpTime">Giờ</label>
+          <input id="inpTime" type="text" value="17:30" />
+        </div>
+      </div>
+      <div style="margin-top:12px">
+        <label for="inpVenue">Địa điểm</label>
+        <input id="inpVenue" type="text" value="The Rose Garden, 123 Đường Hoa, Q.1, TP.HCM" />
+      </div>
+
+      <div style="margin-top:18px; border-top:1px solid #ffe4e6; padding-top:14px">
+        <label class="switch">
+          <input id="chkShowQR" type="checkbox" checked>
+          <span></span>
+          <small>Hiển thị QR mừng cưới</small>
+        </label>
+        <div style="margin-top:10px">
+          <label for="inpQR">Nội dung/Link QR (Momo/VietQR…)</label>
+          <input id="inpQR" type="text" value="https://example.com/mung-cuoi?ten=LanMinh&so_tai_khoan=0123456789" />
+          <div class="note" style="margin-top:6px">Gợi ý: dán link thanh toán (Momo/ZaloPay/VietQR). Không có link?
+            Nhập: Ngân hàng, STK, Tên chủ TK, nội dung chuyển khoản.</div>
+        </div>
+      </div>
+
+      <div style="margin-top:18px; border-top:1px solid #ffe4e6; padding-top:14px">
+        <label for="inpMusic" style="display:block">Nghe nhạc (URL .mp3)</label>
+        <div class="row">
+          <input id="inpMusic" type="url" placeholder="Dán link .mp3" />
+          <button class="btn" id="btnPlay">Phát</button>
+          <button class="btn" id="btnPause">Tạm dừng</button>
+        </div>
+        <div class="note" style="margin-top:6px">Lưu ý: dùng nhạc bạn có quyền sử dụng. Trình duyệt có thể chặn tự động
+          phát.</div>
+      </div>
+
+      <div style="margin-top:18px; border-top:1px solid #ffe4e6; padding-top:14px">
+        <p class="note"><strong>Gợi ý Typography:</strong> Tên dùng <em>Great Vibes</em>; câu mời dùng <em>Playfair
+            Display</em>; chi tiết dùng <em>Poppins</em>. Nền hồng pastel, chữ tông đỏ đất/rose để tương phản dịu.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">Thiệp mời cưới demo • Nền hồng • Tải PNG & QR • HTML/CSS/JS thuần</div>
+
+  <!-- Libs: html2canvas & qrcodejs -->
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+  <script>
+    // Elements
+    const elBride = document.getElementById('nameBride');
+    const elGroom = document.getElementById('nameGroom');
+    const elDate = document.getElementById('date');
+    const elTime = document.getElementById('time');
+    const elVenue = document.getElementById('venue');
+    const elQRSection = document.getElementById('qrSection');
+    const elQRBox = document.getElementById('qrcode');
+    const elCard = document.getElementById('card');
+    const audio = document.getElementById('bgm');
+
+    // Inputs
+    const inpBride = document.getElementById('inpBride');
+    const inpGroom = document.getElementById('inpGroom');
+    const inpDate = document.getElementById('inpDate');
+    const inpTime = document.getElementById('inpTime');
+    const inpVenue = document.getElementById('inpVenue');
+    const chkShowQR = document.getElementById('chkShowQR');
+    const inpQR = document.getElementById('inpQR');
+    const inpMusic = document.getElementById('inpMusic');
+
+    const btnPlay = document.getElementById('btnPlay');
+    const btnPause = document.getElementById('btnPause');
+    const btnDownloadCard = document.getElementById('btnDownloadCard');
+    const btnDownloadQR = document.getElementById('btnDownloadQR');
+
+    // Init QR
+    let qr = new QRCode(elQRBox, { text: inpQR.value, width: 148, height: 148, correctLevel: QRCode.CorrectLevel.M });
+
+    // Bindings
+    function updateNames() { elBride.textContent = inpBride.value || ' '; elGroom.textContent = inpGroom.value || ' '; document.title = `Thiệp cưới ${inpBride.value} & ${inpGroom.value}`; }
+    function updateDateTime() { elDate.textContent = inpDate.value; elTime.textContent = inpTime.value; }
+    function updateVenue() { elVenue.textContent = inpVenue.value; }
+    function updateQR() { elQRBox.innerHTML = ''; qr = new QRCode(elQRBox, { text: inpQR.value || '', width: 148, height: 148, correctLevel: QRCode.CorrectLevel.M }); }
+
+    inpBride.addEventListener('input', updateNames);
+    inpGroom.addEventListener('input', updateNames);
+    inpDate.addEventListener('input', updateDateTime);
+    inpTime.addEventListener('input', updateDateTime);
+    inpVenue.addEventListener('input', updateVenue);
+    inpQR.addEventListener('input', updateQR);
+
+    chkShowQR.addEventListener('change', () => { elQRSection.style.display = chkShowQR.checked ? '' : 'none'; });
+
+    // Music controls
+    btnPlay.addEventListener('click', async () => {
+      if (!inpMusic.value) { alert('Dán URL .mp3 vào ô trước khi phát.'); return; }
+      if (audio.src !== inpMusic.value) audio.src = inpMusic.value;
+      try { await audio.play(); } catch (e) { console.warn(e); alert('Không thể phát nhạc. Kiểm tra URL hoặc quyền phát tự động.'); }
+    });
+    btnPause.addEventListener('click', () => audio.pause());
+
+    // Download card as PNG
+    btnDownloadCard.addEventListener('click', async () => {
+      const canvas = await html2canvas(elCard, { scale: 2, backgroundColor: null });
+      const url = canvas.toDataURL('image/png');
+      const a = document.createElement('a');
+      a.href = url; a.download = `thiep-cuoi-${inpBride.value}-${inpGroom.value}.png`; a.click();
+    });
+
+    // Download QR as PNG (from canvas or img)
+    btnDownloadQR.addEventListener('click', () => {
+      // qrcodejs may render <canvas> or <img>
+      const canvas = elQRBox.querySelector('canvas');
+      if (canvas) {
+        const a = document.createElement('a');
+        a.href = canvas.toDataURL('image/png');
+        a.download = `QR-mung-cuoi-${inpBride.value}-${inpGroom.value}.png`;
+        a.click();
+      } else {
+        const img = elQRBox.querySelector('img');
+        if (!img) { alert('Không tìm thấy QR để tải.'); return; }
+        // Draw to a new canvas for download
+        const can = document.createElement('canvas');
+        can.width = img.naturalWidth; can.height = img.naturalHeight;
+        const ctx = can.getContext('2d'); ctx.drawImage(img, 0, 0);
+        const a = document.createElement('a'); a.href = can.toDataURL('image/png'); a.download = `QR-mung-cuoi-${inpBride.value}-${inpGroom.value}.png`; a.click();
+      }
+    });
+  </script>
+</body>
+
+</html>

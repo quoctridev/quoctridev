@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PSU Utility – Volt ↔ Watt</title>
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* tiny helpers */
+    .tab-active{ background:rgb(229 231 235); font-weight:600 }
+    .shadow-soft{ box-shadow: 0 10px 25px rgba(0,0,0,.06) }
+    .card{ border-radius:1rem; background:#fff }
+  </style>
+</head>
+<body class="min-h-screen bg-gray-50 text-gray-900 p-4 sm:p-8">
+  <div class="max-w-4xl mx-auto">
+    <!-- Header -->
+    <header class="mb-6 sm:mb-10 text-center">
+      <div class="inline-flex items-center gap-2 rounded-2xl px-3 py-1 bg-white shadow-soft">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-yellow-500"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+        <span class="text-sm font-medium">PSU Utility</span>
+      </div>
+      <h1 class="mt-3 text-3xl sm:text-4xl font-bold tracking-tight">
+        Chuyển đổi PSU: <span class="text-blue-600">Volt ↔ Watt</span>
+      </h1>
+      <p class="mt-2 text-sm sm:text-base text-gray-600">
+        Công thức: <b>P = V × I</b>, <b>P = V² / R</b>, <b>I = P / V</b>, <b>V = P / I</b>.
+      </p>
+    </header>
+
+    <!-- Card main -->
+    <section class="card shadow-soft p-4 sm:p-6">
+      <!-- Tabs -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 bg-gray-100 p-1 rounded-2xl">
+        <button data-tab="va2w" class="tab tab-active rounded-xl px-3 py-2">V & A → W</button>
+        <button data-tab="vr2w" class="tab rounded-xl px-3 py-2">V & Ω → W</button>
+        <button data-tab="wv2a" class="tab rounded-xl px-3 py-2">W & V → A</button>
+        <button data-tab="wa2v" class="tab rounded-xl px-3 py-2">W & A → V</button>
+      </div>
+
+      <!-- Panels -->
+      <div class="mt-4 space-y-4">
+        <!-- va2w -->
+        <div data-panel="va2w" class="panel grid sm:grid-cols-2 gap-4">
+          <div class="space-y-2">
+            <label class="text-sm">Điện áp (V)</label>
+            <input id="v_va2w" type="text" inputmode="decimal" class="w-full border rounded-xl p-2" value="12" />
+            <input id="v_va2w_r" type="range" min="0" max="250" step="0.1" value="12" class="w-full" />
+            <div class="text-[11px] text-gray-500">Khoảng: 0 – 250 | Bước: 0.1</div>
+          </div>
+          <div class="space-y-2">
+            <label class="text-sm">Dòng điện (A)</label>
+            <input id="a_va2w" type="text" inputmode="decimal" class="w-full border rounded-xl p-2" value="5" />
+            <input id="a_va2w_r" type="range" min="0" max="100" step="0.1" value="5" class="w-full" />
+            <div class="text-[11px] text-gray-500">Khoảng: 0 – 100 | Bước: 0.1</div>
+          </div>
+        </div>
+
+        <!-- vr2w -->
+        <div data-panel="vr2w" class="panel hidden grid sm:grid-cols-2 gap-4">
+          <div class="space-y-2">
+            <label class="text-sm">Điện áp (V)</label>
+            <input id="v_vr2w" type="text" inputmode="decimal" class="w-full border rounded-xl p-2" value="12" />
+            <input id="v_vr2w_r" type="range" min="0" max="250" step="0.1" value="12" class="w-full" />
+            <div class="text-[11px] text-gray-500">Khoảng: 0 – 250 | Bước: 0.1</div>
+          </div>
+          <div class="space-y-2">
+            <label class="text-sm">Điện trở (Ω)</label>
+            <input id="r_vr2w" type="text" inputmode="decimal" class="w-full border rounded-xl p-2" value="10" />
+            <input id="r_vr2w_r" type="range" min="0.1" max="1000" step="0.1" value="10" class="w-full" />
+            <div class="text-[11px] text-gray-500">Khoảng: 0.1 – 1000 | Bước: 0.1</div>
+          </div>
+        </div>
+
+        <!-- wv2a -->
+        <div data-panel="wv2a" class="panel hidden grid sm:grid-cols-2 gap-4">
+          <div class="space-y-2">
+            <label class="text-sm">Công suất (W)</label>
+            <input id="w_wv2a" type="text" inputmode="decimal" class="w-full border rounded-xl p-2" value="60" />
+            <input id="w_wv2a_r" type="range" min="0" max="2000" step="1" value="60" class="w-full" />
+            <div class="text-[11px] text-gray-500">Khoảng: 0 – 2000 | Bước: 1</div>
+          </div>
+          <div class="space-y-2">
+            <label class="text-sm">Điện áp (V)</label>
+            <input id="v_wv2a" type="text" inputmode="decimal" class="w-full border rounded-xl p-2" value="12" />
+            <input id="v_wv2a_r" type="range" min="0.1" max="250" step="0.1" value="12" class="w-full" />
+            <div class="text-[11px] text-gray-500">Khoảng: 0.1 – 250 | Bước: 0.1</div>
+          </div>
+        </div>
+
+        <!-- wa2v -->
+        <div data-panel="wa2v" class="panel hidden grid sm:grid-cols-2 gap-4">
+          <div class="space-y-2">
+            <label class="text-sm">Công suất (W)</label>
+            <input id="w_wa2v" type="text" inputmode="decimal" class="w-full border rounded-xl p-2" value="60" />
+            <input id="w_wa2v_r" type="range" min="0" max="2000" step="1" value="60" class="w-full" />
+            <div class="text-[11px] text-gray-500">Khoảng: 0 – 2000 | Bước: 1</div>
+          </div>
+          <div class="space-y-2">
+            <label class="text-sm">Dòng điện (A)</label>
+            <input id="a_wa2v" type="text" inputmode="decimal" class="w-full border rounded-xl p-2" value="5" />
+            <input id="a_wa2v_r" type="range" min="0.1" max="100" step="0.1" value="5" class="w-full" />
+            <div class="text-[11px] text-gray-500">Khoảng: 0.1 – 100 | Bước: 0.1</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Result & actions -->
+      <div class="mt-6 grid gap-4 sm:grid-cols-5">
+        <div class="card sm:col-span-3 shadow-soft p-4">
+          <div class="text-lg font-semibold mb-2">Kết quả</div>
+          <div class="flex items-end justify-between gap-4">
+            <div>
+              <div id="result-label" class="text-sm text-gray-500">Công suất</div>
+              <div class="text-4xl font-bold tracking-tight">
+                <span id="result-value">60</span>
+                <span id="result-unit" class="ml-2 text-xl text-gray-500">W</span>
+              </div>
+            </div>
+            <div class="flex items-center gap-2">
+              <button id="btn-copy" class="rounded-xl border px-3 py-2 bg-gray-100">Copy</button>
+              <button id="btn-reset" class="rounded-xl border px-3 py-2">Reset</button>
+            </div>
+          </div>
+          <div class="mt-4">
+            <label class="text-sm">Số chữ số thập phân: <span id="prec-label">2</span></label>
+            <input id="prec" type="range" min="0" max="6" step="1" value="2" class="w-full" />
+          </div>
+        </div>
+
+        <div class="card sm:col-span-2 shadow-soft p-4 bg-blue-50/60">
+          <div class="text-lg font-semibold mb-2 flex items-center gap-2">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+            Ghi chú nhanh
+          </div>
+          <ul class="text-sm leading-relaxed text-gray-700 list-disc ml-5 space-y-1">
+            <li><b>P</b> (Watt), <b>V</b> (Volt), <b>I</b> (Ampere), <b>R</b> (Ohm).</li>
+            <li>PSU PC thường quan trọng nhất là đường 12V. Tổng W thực tế phụ thuộc hiệu suất.</li>
+            <li>Đổi từ <b>VA</b> sang <b>W</b> cần hệ số công suất <b>PF</b> (≈ 0.8–0.95): <i>W ≈ VA × PF</i>.</li>
+            <li>Giá trị có thể chênh do tổn hao & dao động điện áp.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <footer class="mt-8 text-xs text-gray-500 text-center">
+      Thuần HTML + Tailwind CDN. Không phụ thuộc React/shadcn.
+    </footer>
+  </div>
+
+<script>
+(function(){
+  const state = {
+    tab: 'va2w',
+    V: 12,
+    I: 5,
+    R: 10,
+    W: 60,
+    precision: 2,
+  };
+
+  // helpers
+  const toNum = (v)=>{
+    const n = parseFloat(String(v).replace(',', '.'));
+    return Number.isFinite(n) ? n : NaN;
+  };
+  const clamp = (v,min,max)=> Math.min(Math.max(v,min),max);
+  const fmt = (n, d)=> (Number.isFinite(n) ? n.toLocaleString(undefined,{maximumFractionDigits:d, minimumFractionDigits:0}) : '—');
+
+  // tabs
+  const tabs = document.querySelectorAll('.tab');
+  const panels = document.querySelectorAll('.panel');
+  tabs.forEach(btn=> btn.addEventListener('click', ()=>{
+    const t = btn.dataset.tab;
+    state.tab = t;
+    tabs.forEach(b=> b.classList.toggle('tab-active', b.dataset.tab===t));
+    panels.forEach(p=> p.classList.toggle('hidden', p.dataset.panel!==t));
+    render();
+  }));
+
+  // inputs link number <-> range
+  function link(idText, idRange, key, min, max){
+    const t = document.getElementById(idText);
+    const r = document.getElementById(idRange);
+    const syncRangeFromText = ()=>{
+      const val = toNum(t.value);
+      if(Number.isFinite(val)){
+        state[key] = clamp(val, min, max);
+        r.value = state[key];
+        t.value = String(state[key]);
+        render();
+      }
+    };
+    const syncTextFromRange = ()=>{
+      state[key] = toNum(r.value);
+      t.value = r.value;
+      render();
+    };
+    t.addEventListener('blur', syncRangeFromText);
+    t.addEventListener('keydown', e=>{ if(e.key==='Enter') { t.blur(); } });
+    r.addEventListener('input', syncTextFromRange);
+  }
+
+  // link all fields
+  link('v_va2w','v_va2w_r','V',0,250);
+  link('a_va2w','a_va2w_r','I',0,100);
+
+  link('v_vr2w','v_vr2w_r','V',0,250);
+  link('r_vr2w','r_vr2w_r','R',0.1,1000);
+
+  link('w_wv2a','w_wv2a_r','W',0,2000);
+  link('v_wv2a','v_wv2a_r','V',0.1,250);
+
+  link('w_wa2v','w_wa2v_r','W',0,2000);
+  link('a_wa2v','a_wa2v_r','I',0.1,100);
+
+  // precision
+  const prec = document.getElementById('prec');
+  const precLabel = document.getElementById('prec-label');
+  prec.addEventListener('input', ()=>{ state.precision = +prec.value; precLabel.textContent = prec.value; render(); });
+
+  // result elements
+  const elLabel = document.getElementById('result-label');
+  const elValue = document.getElementById('result-value');
+  const elUnit  = document.getElementById('result-unit');
+
+  function compute(){
+    if(state.tab==='va2w'){ return { label:'Công suất', value: state.V * state.I, unit:'W' }; }
+    if(state.tab==='vr2w'){ if(state.R===0) return {label:'Công suất', value: NaN, unit:'W'}; return { label:'Công suất', value: (state.V*state.V)/state.R, unit:'W'}; }
+    if(state.tab==='wv2a'){ if(state.V===0) return {label:'Dòng điện', value: NaN, unit:'A'}; return { label:'Dòng điện', value: state.W/state.V, unit:'A'}; }
+    if(state.tab==='wa2v'){ if(state.I===0) return {label:'Điện áp', value: NaN, unit:'V'}; return { label:'Điện áp', value: state.W/state.I, unit:'V'}; }
+    return { label:'Kết quả', value: NaN, unit:'' };
+  }
+
+  function render(){
+    const res = compute();
+    elLabel.textContent = res.label;
+    elValue.textContent = fmt(res.value, state.precision);
+    elUnit.textContent  = res.unit;
+  }
+
+  // copy
+  document.getElementById('btn-copy').addEventListener('click', async ()=>{
+    const res = compute();
+    const raw = Number.isFinite(res.value) ? res.value.toFixed(state.precision) : '';
+    try{
+      await navigator.clipboard.writeText(`${raw} ${res.unit}`.trim());
+      const btn = document.getElementById('btn-copy');
+      const old = btn.textContent; btn.textContent = 'Đã copy';
+      setTimeout(()=> btn.textContent = old, 1200);
+    }catch(e){}
+  });
+
+  // reset
+  document.getElementById('btn-reset').addEventListener('click', ()=>{
+    state.V=12; state.I=5; state.R=10; state.W=60; state.precision=2; state.tab='va2w';
+    // reset UI
+    [ ['v_va2w','v_va2w_r',state.V], ['a_va2w','a_va2w_r',state.I], ['v_vr2w','v_vr2w_r',state.V], ['r_vr2w','r_vr2w_r',state.R], ['w_wv2a','w_wv2a_r',state.W], ['v_wv2a','v_wv2a_r',state.V], ['w_wa2v','w_wa2v_r',state.W], ['a_wa2v','a_wa2v_r',state.I] ].forEach(([t,r,val])=>{ document.getElementById(t).value=val; document.getElementById(r).value=val; });
+    prec.value=2; precLabel.textContent='2';
+    tabs.forEach(b=> b.classList.toggle('tab-active', b.dataset.tab==='va2w'));
+    panels.forEach(p=> p.classList.toggle('hidden', p.dataset.panel!=='va2w'));
+    render();
+  });
+
+  // initial render
+  render();
+})();
+</script>
+</body>
+</html>

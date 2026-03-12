@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Demo HH:mm</title>
+</head>
+<body class="min-h-screen bg-slate-50 flex items-center justify-center p-6">
+  <div class="w-full max-w-md space-y-6">
+    <!-- Time input (HH:mm) -->
+    <div>
+      <label for="time" class="block text-sm font-medium text-slate-700">
+        Giờ (HH:mm)
+      </label>
+      <div class="relative mt-1">
+        <!-- icon -->
+        <svg class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 opacity-70"
+             viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <circle cx="12" cy="12" r="9" stroke-width="1.5"/>
+          <path d="M12 7v5l3 3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <input id="time" name="time" type="time"
+               step="60"               <!-- chỉ phút, không giây -->
+               min="08:00" max="22:00"<!-- khung giờ hợp lệ -->
+               value="13:30"          <!-- demo giá trị mặc định -->
+               class="peer w-full rounded-xl border border-slate-300 bg-white pl-10 pr-3 py-2
+                      text-slate-900 shadow-sm outline-none
+                      focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+               placeholder="HH:mm" required />
+      </div>
+      <p class="mt-2 text-xs text-slate-500">Khung giờ: 08:00—22:00. Bước: 1 phút.</p>
+    </div>
+
+    <!-- Fallback cho trình duyệt không hỗ trợ input[type=time] -->
+    <div id="fb-wrap" class="hidden">
+      <label for="time_fallback" class="block text-sm font-medium text-slate-700">
+        Giờ (fallback — HH:mm, 24h)
+      </label>
+      <input id="time_fallback" type="text" inputmode="numeric"
+             pattern="^([01]\\d|2[0-3]):([0-5]\\d)$"
+             placeholder="HH:mm"
+             class="mt-1 w-full rounded-xl border border-slate-300 bg-white px-3 py-2
+                    text-slate-900 shadow-sm outline-none
+                    focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" />
+      <p class="mt-2 text-xs text-slate-500">Ví dụ: 09:05, 18:30. Chỉ 24h.</p>
+    </div>
+
+    <button id="submit"
+            class="w-full rounded-xl bg-indigo-600 text-white font-medium py-2.5
+                   hover:bg-indigo-700 active:bg-indigo-800 transition">
+      Lấy giá trị
+    </button>
+
+    <pre id="out"
+         class="rounded-xl bg-white border border-slate-200 p-3 text-sm text-slate-800"></pre>
+  </div>
+
+  <script>
+    // Phát hiện hỗ trợ input[type=time]
+    const supportsTime = (() => {
+      const i = document.createElement('input');
+      i.setAttribute('type', 'time');
+      return i.type === 'time';
+    })();
+
+    // Hiện/ẩn fallback
+    const fbWrap = document.getElementById('fb-wrap');
+    if (!supportsTime && fbWrap) fbWrap.classList.remove('hidden');
+
+    // Tự chèn ":" khi gõ fallback (nếu dùng)
+    const fb = document.getElementById('time_fallback');
+    fb?.addEventListener('input', (e) => {
+      let v = e.target.value.replace(/[^\d]/g, '').slice(0, 4);
+      if (v.length >= 3) v = v.slice(0, 2) + ':' + v.slice(2);
+      e.target.value = v;
+    });
+
+    // Lấy giá trị
+    document.getElementById('submit').addEventListener('click', (e) => {
+      e.preventDefault();
+      const val = supportsTime
+        ? document.getElementById('time').value
+        : document.getElementById('time_fallback').value;
+      document.getElementById('out').textContent = 'Value: ' + (val || '(trống)');
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tech Toolkit – KTV PC & Android</title>
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class' }
+  </script>
+  <style>
+    .card{border-radius:1rem;background:var(--tw-bg);}
+    .shadow-soft{box-shadow:0 10px 25px rgba(0,0,0,.06)}
+    .nav-item.active{background:rgb(229 231 235);font-weight:600}
+    .dark .nav-item.active{background:rgb(55 65 81)}
+    .tool.hidden{display:none}
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-100">
+  <div class="min-h-screen grid lg:grid-cols-[260px_1fr]">
+    <!-- Sidebar -->
+    <aside class="p-4 lg:p-6 border-r border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950">
+      <div class="flex items-center justify-between mb-4">
+        <div class="flex items-center gap-2">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+          <strong>Tech Toolkit</strong>
+        </div>
+        <button id="btn-theme" class="text-sm px-2 py-1 rounded-lg border dark:border-gray-700">Dark</button>
+      </div>
+      <nav id="nav" class="grid gap-2 text-sm">
+        <div class="uppercase text-xs tracking-wider text-gray-500 dark:text-gray-400 mt-2">Nguồn/Điện</div>
+        <button class="nav-item rounded-xl px-3 py-2 text-left" data-tool="psu">PSU: Volt ↔ Watt</button>
+        <button class="nav-item rounded-xl px-3 py-2 text-left" data-tool="vapf">VA × PF → W</button>
+        <button class="nav-item rounded-xl px-3 py-2 text-left" data-tool="battery">mAh ↔ Wh</button>
+
+        <div class="uppercase text-xs tracking-wider text-gray-500 dark:text-gray-400 mt-4">Lưu trữ/Files</div>
+        <button class="nav-item rounded-xl px-3 py-2 text-left" data-tool="storage">GB ↔ GiB</button>
+        <button class="nav-item rounded-xl px-3 py-2 text-left" data-tool="hash">Tính SHA-256 file</button>
+
+        <div class="uppercase text-xs tracking-wider text-gray-500 dark:text-gray-400 mt-4">Android</div>
+        <button class="nav-item rounded-xl px-3 py-2 text-left" data-tool="adb">ADB Command Builder</button>
+        <button class="nav-item rounded-xl px-3 py-2 text-left" data-tool="dpi">DPI & dp ↔ px</button>
+      </nav>
+      <div class="mt-6 text-xs text-gray-500 dark:text-gray-400">
+        Thuần HTML + Tailwind CDN + JS. Không cần build.
+      </div>
+    </aside>
+
+    <!-- Main -->
+    <main class="p-4 lg:p-8 space-y-6">
+      <header class="flex flex-wrap items-center justify-between gap-3">
+        <div>
+          <h1 class="text-2xl font-bold tracking-tight">Bộ tiện ích cho KTV PC & Android</h1>
+          <p class="text-sm text-gray-600 dark:text-gray-400">Tập hợp công cụ offline chạy ngay trên trình duyệt.</p>
+        </div>
+        <button id="btn-reset-all" class="rounded-xl border px-3 py-2 text-sm">Reset tất cả</button>
+      </header>
+
+      <!-- PSU Volt/Watt -->
+      <section id="tool-psu" class="tool card shadow-soft p-4 lg:p-6">
+        <h2 class="text-lg font-semibold mb-3">PSU: Chuyển đổi Volt ↔ Watt ↔ Ampere</h2>
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div class="space-y-2">
+            <label class="text-sm">Điện áp (V)</label>
+            <input id="psu-V" type="text" inputmode="decimal" class="w-full border rounded-xl p-2 bg-transparent" value="12" />
+            <input id="psu-Vr" type="range" min="0" max="250" step="0.1" value="12" class="w-full" />
+          </div>
+          <div class="space-y-2">
+            <label class="text-sm">Dòng điện (A)</label>
+            <input id="psu-I" type="text" inputmode="decimal" class="w-full border rounded-xl p-2 bg-transparent" value="5" />
+            <input id="psu-Ir" type="range" min="0" max="100" step="0.1" value="5" class="w-full" />
+          </div>
+        </div>
+        <div class="grid sm:grid-cols-2 gap-4 mt-4">
+          <div class="space-y-2">
+            <label class="text-sm">Điện trở (Ω) — tùy chọn</label>
+            <input id="psu-R" type="text" inputmode="decimal" class="w-full border rounded-xl p-2 bg-transparent" value="10" />
+            <input id="psu-Rr" type="range" min="0.1" max="1000" step="0.1" value="10" class="w-full" />
+          </div>
+          <div class="space-y-2">
+            <label class="text-sm">Công suất (W) — dùng ngược</label>
+            <input id="psu-W" type="text" inputmode="decimal" class="w-full border rounded-xl p-2 bg-transparent" value="60" />
+            <input id="psu-Wr" type="range" min="0" max="2000" step="1" value="60" class="w-full" />
+          </div>
+        </div>
+        <div class="mt-4 grid lg:grid-cols-3 gap-4">
+          <div class="rounded-2xl p-4 border dark:border-gray-800">
+            <div class="text-xs text-gray-500">P = V × I</div>
+            <div class="text-3xl font-bold"><span id="psu-Pvi">60</span> <span class="text-xl">W</span></div>
+          </div>
+          <div class="rounded-2xl p-4 border dark:border-gray-800">
+            <div class="text-xs text-gray-500">P = V² / R</div>
+            <div class="text-3xl font-bold"><span id="psu-Pvr">14.4</span> <span class="text-xl">W</span></div>
+          </div>
+          <div class="rounded-2xl p-4 border dark:border-gray-800">
+            <div class="text-xs text-gray-500">I = P / V (từ W)</div>
+            <div class="text-3xl font-bold"><span id="psu-Iwv">5</span> <span class="text-xl">A</span></div>
+          </div>
+        </div>
+        <div class="mt-4 flex items-center gap-2 text-sm">
+          <label>Độ chính xác:</label>
+          <input id="psu-prec" type="range" min="0" max="6" step="1" value="2" />
+          <span id="psu-prec-label" class="ml-1">2</span>
+          <button id="psu-copy" class="ml-auto rounded-xl border px-3 py-2">Copy P, I</button>
+        </div>
+        <div class="mt-3 text-xs text-gray-500 dark:text-gray-400">Mẹo: 95W ở 12V ⇒ I ≈ 7.92A (I = P/V).</div>
+      </section>
+
+      <!-- VA × PF → W -->
+      <section id="tool-vapf" class="tool card shadow-soft p-4 lg:p-6 hidden">
+        <h2 class="text-lg font-semibold mb-3">VA × PF → W (nguồn AC/UPS)</h2>
+        <div class="grid sm:grid-cols-3 gap-4">
+          <div class="space-y-2"><label class="text-sm">Công suất biểu kiến (VA)</label><input id="pf-VA" class="w-full border rounded-xl p-2 bg-transparent" value="500" inputmode="decimal" /></div>
+          <div class="space-y-2"><label class="text-sm">Hệ số công suất PF (0–1)</label><input id="pf-PF" class="w-full border rounded-xl p-2 bg-transparent" value="0.9" inputmode="decimal" /></div>
+          <div class="space-y-2"><label class="text-sm">Công suất thực (W)</label><input id="pf-W" class="w-full border rounded-xl p-2 bg-transparent" value="450" inputmode="decimal" readonly /></div>
+        </div>
+        <p class="mt-3 text-sm text-gray-600 dark:text-gray-400">W ≈ VA × PF. Ví dụ UPS 1000VA, PF 0.8 ⇒ ~800W.</p>
+      </section>
+
+      <!-- Battery mAh ↔ Wh -->
+      <section id="tool-battery" class="tool card shadow-soft p-4 lg:p-6 hidden">
+        <h2 class="text-lg font-semibold mb-3">mAh ↔ Wh (pin/ắc quy)</h2>
+        <div class="grid sm:grid-cols-3 gap-4">
+          <div class="space-y-2"><label class="text-sm">Dung lượng (mAh)</label><input id="bat-mAh" class="w-full border rounded-xl p-2 bg-transparent" value="5000" inputmode="decimal" /></div>
+          <div class="space-y-2"><label class="text-sm">Điện áp danh định (V)</label><input id="bat-V" class="w-full border rounded-xl p-2 bg-transparent" value="3.85" inputmode="decimal" /></div>
+          <div class="space-y-2"><label class="text-sm">Năng lượng (Wh)</label><input id="bat-Wh" class="w-full border rounded-xl p-2 bg-transparent" value="19.25" inputmode="decimal" readonly /></div>
+        </div>
+        <p class="mt-3 text-sm text-gray-600 dark:text-gray-400">Wh = (mAh ÷ 1000) × V. Ngược lại mAh = (Wh ÷ V) × 1000.</p>
+      </section>
+
+      <!-- Storage GB ↔ GiB -->
+      <section id="tool-storage" class="tool card shadow-soft p-4 lg:p-6 hidden">
+        <h2 class="text-lg font-semibold mb-3">Dung lượng lưu trữ: GB ↔ GiB</h2>
+        <div class="grid sm:grid-cols-3 gap-4">
+          <div class="space-y-2"><label class="text-sm">Giá trị</label><input id="st-val" class="w-full border rounded-xl p-2 bg-transparent" value="512" inputmode="decimal" /></div>
+          <div class="space-y-2"><label class="text-sm">Đơn vị nguồn</label>
+            <select id="st-from" class="w-full border rounded-xl p-2 bg-transparent">
+              <option value="GB">GB (10^9)</option>
+              <option value="GiB">GiB (2^30)</option>
+            </select>
+          </div>
+          <div class="space-y-2"><label class="text-sm">Kết quả</label><input id="st-out" class="w-full border rounded-xl p-2 bg-transparent" value="476.84 GiB" readonly /></div>
+        </div>
+        <p class="mt-3 text-sm text-gray-600 dark:text-gray-400">Ổ "512GB" theo hãng ≈ 476.84 GiB hệ điều hành hiển thị.</p>
+      </section>
+
+      <!-- File hash SHA-256 -->
+      <section id="tool-hash" class="tool card shadow-soft p-4 lg:p-6 hidden">
+        <h2 class="text-lg font-semibold mb-3">Tính SHA-256 file (trực tiếp trên trình duyệt)</h2>
+        <div class="flex flex-wrap items-center gap-3">
+          <input id="hash-file" type="file" class="text-sm" />
+          <button id="hash-start" class="rounded-xl border px-3 py-2">Bắt đầu tính</button>
+          <progress id="hash-progress" class="w-56" value="0" max="100"></progress>
+          <button id="hash-copy" class="rounded-xl border px-3 py-2">Copy</button>
+        </div>
+        <pre id="hash-out" class="mt-3 p-3 bg-gray-100 dark:bg-gray-800 rounded-xl text-xs overflow-x-auto">Chưa có hash…</pre>
+        <p class="mt-2 text-xs text-gray-500 dark:text-gray-400">Không tải file lên mạng; dùng Web Crypto API, xử lý cục bộ.</p>
+      </section>
+
+      <!-- ADB Builder -->
+      <section id="tool-adb" class="tool card shadow-soft p-4 lg:p-6 hidden">
+        <h2 class="text-lg font-semibold mb-3">Android ADB Command Builder</h2>
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="space-y-2">
+            <label class="text-sm">Tác vụ</label>
+            <select id="adb-action" class="w-full border rounded-xl p-2 bg-transparent">
+              <option value="devices">Liệt kê thiết bị</option>
+              <option value="install">Cài APK</option>
+              <option value="uninstall">Gỡ app (giữ dữ liệu -k tuỳ chọn)</option>
+              <option value="disable">Disable package</option>
+              <option value="enable">Enable package</option>
+              <option value="reboot-bootloader">Reboot bootloader</option>
+              <option value="reboot-recovery">Reboot recovery</option>
+              <option value="screencap">Chụp màn hình</option>
+              <option value="screenrecord">Quay màn hình</option>
+              <option value="logcat">Logcat filter</option>
+            </select>
+            <div id="adb-params" class="space-y-2 mt-2"></div>
+          </div>
+          <div class="space-y-2">
+            <label class="text-sm">Lệnh kết quả</label>
+            <textarea id="adb-out" class="w-full border rounded-xl p-2 bg-transparent h-40" readonly></textarea>
+            <div class="flex gap-2">
+              <button id="adb-copy" class="rounded-xl border px-3 py-2">Copy</button>
+              <button id="adb-usb" class="rounded-xl border px-3 py-2">Thêm adb start-server / usb</button>
+            </div>
+            <p class="text-xs text-gray-500 dark:text-gray-400">Yêu cầu bật USB debugging. Trên Windows nên thêm platform-tools vào PATH.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- DPI & dp/px -->
+      <section id="tool-dpi" class="tool card shadow-soft p-4 lg:p-6 hidden">
+        <h2 class="text-lg font-semibold mb-3">DPI & đổi dp ↔ px</h2>
+        <div class="grid sm:grid-cols-3 gap-4">
+          <div class="space-y-2"><label class="text-sm">Chiều rộng × cao (px)</label><input id="dpi-res" class="w-full border rounded-xl p-2 bg-transparent" value="2400x1080" /></div>
+          <div class="space-y-2"><label class="text-sm">Kích thước (inch)</label><input id="dpi-inch" class="w-full border rounded-xl p-2 bg-transparent" value="6.5" inputmode="decimal" /></div>
+          <div class="space-y-2"><label class="text-sm">dp ↔ px tại DPI</label><input id="dpi-value" class="w-full border rounded-xl p-2 bg-transparent" value="16dp" /></div>
+        </div>
+        <div class="mt-3 grid sm:grid-cols-3 gap-4">
+          <div class="rounded-2xl p-4 border dark:border-gray-800"><div class="text-xs text-gray-500">PPI</div><div class="text-3xl font-bold"><span id="dpi-ppi">~405</span></div></div>
+          <div class="rounded-2xl p-4 border dark:border-gray-800"><div class="text-xs text-gray-500">Bucket</div><div class="text-3xl font-bold"><span id="dpi-bucket">xxhdpi</span></div></div>
+          <div class="rounded-2xl p-4 border dark:border-gray-800"><div class="text-xs text-gray-500">Chuyển đổi</div><div class="text-xl font-mono" id="dpi-out">16dp ≈ 48px @3.0</div></div>
+        </div>
+        <p class="mt-2 text-xs text-gray-500 dark:text-gray-400">dp→px = dp × (dpi/160). px→dp = px ÷ (dpi/160).</p>
+      </section>
+
+      <footer class="py-6 text-center text-xs text-gray-500 dark:text-gray-400">Made for KTV: PC, Android. Thêm công cụ? Boot USB, SMART viewer, tính PSU đa-rail, v.v.</footer>
+    </main>
+  </div>
+
+<script>
+(function(){
+  const $ = (q)=> document.querySelector(q);
+  const $$ = (q)=> Array.from(document.querySelectorAll(q));
+  const toNum = (v)=>{ const n = parseFloat(String(v).replace(',', '.')); return Number.isFinite(n)?n:NaN };
+  const clamp=(v,min,max)=> Math.min(Math.max(v,min),max);
+
+  // Theme
+  const root = document.documentElement; const btnTheme = $('#btn-theme');
+  const setTheme = (dark)=>{ root.classList.toggle('dark', dark); btnTheme.textContent = dark? 'Light' : 'Dark'; localStorage.setItem('ttk-theme', dark? 'dark':'light'); };
+  setTheme(localStorage.getItem('ttk-theme')==='dark');
+  btnTheme.addEventListener('click', ()=> setTheme(!root.classList.contains('dark')));
+
+  // Router (fake) via nav buttons
+  const nav = $('#nav');
+  const tools = $$('.tool');
+  function show(tool){
+    tools.forEach(t=> t.classList.add('hidden'));
+    const el = document.getElementById('tool-'+tool);
+    if(el) el.classList.remove('hidden');
+    $$('.nav-item').forEach(b=> b.classList.toggle('active', b.dataset.tool===tool));
+    history.replaceState({}, '', '#'+tool);
+  }
+  nav.addEventListener('click', (e)=>{
+    const btn = e.target.closest('.nav-item'); if(!btn) return; show(btn.dataset.tool);
+  });
+  // initial route
+  const initial = location.hash?.slice(1) || 'psu'; show(initial);
+
+  // PSU tool logic
+  const psu = {
+    V: $('#psu-V'), Vr: $('#psu-Vr'), I: $('#psu-I'), Ir: $('#psu-Ir'), R: $('#psu-R'), Rr: $('#psu-Rr'), W: $('#psu-W'), Wr: $('#psu-Wr'),
+    Pvi: $('#psu-Pvi'), Pvr: $('#psu-Pvr'), Iwv: $('#psu-Iwv'), prec: $('#psu-prec'), precl: $('#psu-prec-label'), copy: $('#psu-copy')
+  };
+  function syncPair(text, range, key, min, max){
+    text.addEventListener('blur', ()=>{ const n=toNum(text.value); if(Number.isFinite(n)){ const c=clamp(n,min,max); text.value=c; range.value=c; render(); }});
+    text.addEventListener('keydown', e=>{ if(e.key==='Enter') text.blur(); });
+    range.addEventListener('input', ()=>{ text.value=range.value; render(); });
+  }
+  syncPair(psu.V, psu.Vr, 'V', 0, 250); syncPair(psu.I, psu.Ir, 'I', 0, 100); syncPair(psu.R, psu.Rr, 'R', 0.1, 1000); syncPair(psu.W, psu.Wr, 'W', 0, 2000);
+  psu.prec.addEventListener('input', ()=>{ psu.precl.textContent = psu.prec.value; render(); });
+  function render(){
+    const V = toNum(psu.V.value), I = toNum(psu.I.value), R = toNum(psu.R.value), W = toNum(psu.W.value);
+    const d = +psu.prec.value;
+    const pvi = V*I;
+    const pvr = (R===0? NaN : (V*V)/R);
+    const iwv = (V===0? NaN : W/V);
+    psu.Pvi.textContent = Number.isFinite(pvi) ? pvi.toFixed(d) : '—';
+    psu.Pvr.textContent = Number.isFinite(pvr) ? pvr.toFixed(d) : '—';
+    psu.Iwv.textContent = Number.isFinite(iwv) ? iwv.toFixed(d) : '—';
+  }
+  psu.copy.addEventListener('click', async ()=>{
+    const txt = `P= ${psu.Pvi.textContent} W | P(V^2/R)= ${psu.Pvr.textContent} W | I= ${psu.Iwv.textContent} A`;
+    try{ await navigator.clipboard.writeText(txt); psu.copy.textContent='Đã copy'; setTimeout(()=> psu.copy.textContent='Copy P, I', 1200);}catch(e){}
+  });
+  render();
+
+  // VA×PF tool
+  const pf = { VA: $('#pf-VA'), PF: $('#pf-PF'), W: $('#pf-W') };
+  function pfRender(){
+    const VA = toNum(pf.VA.value), P = toNum(pf.PF.value);
+    const W = (Number.isFinite(VA)&&Number.isFinite(P)) ? VA*P : NaN;
+    pf.W.value = Number.isFinite(W)? W.toFixed(2):'';
+  }
+  ;['blur','input'].forEach(ev=>{ pf.VA.addEventListener(ev,pfRender); pf.PF.addEventListener(ev,pfRender); }); pfRender();
+
+  // Battery mAh↔Wh
+  const bat = { mAh: $('#bat-mAh'), V: $('#bat-V'), Wh: $('#bat-Wh') };
+  function batRender(){
+    const m = toNum(bat.mAh.value), v = toNum(bat.V.value);
+    const wh = (Number.isFinite(m)&&Number.isFinite(v)) ? (m/1000)*v : NaN;
+    bat.Wh.value = Number.isFinite(wh) ? wh.toFixed(2) : '';
+  }
+  ;['blur','input'].forEach(ev=>{ bat.mAh.addEventListener(ev,batRender); bat.V.addEventListener(ev,batRender); }); batRender();
+
+  // Storage GB↔GiB
+  const st = { val: $('#st-val'), from: $('#st-from'), out: $('#st-out') };
+  function stRender(){
+    const v = toNum(st.val.value); if(!Number.isFinite(v)){ st.out.value=''; return; }
+    if(st.from.value==='GB'){ const gib = v*1e9/Math.pow(2,30); st.out.value = gib.toFixed(2)+' GiB'; }
+    else { const gb = v*Math.pow(2,30)/1e9; st.out.value = gb.toFixed(2)+' GB'; }
+  }
+  ;['blur','input','change'].forEach(ev=>{ st.val.addEventListener(ev,stRender); st.from.addEventListener(ev,stRender); }); stRender();
+
+  // SHA-256 file
+  const h = { file: $('#hash-file'), start: $('#hash-start'), out: $('#hash-out'), progress: $('#hash-progress'), copy: $('#hash-copy') };
+  async function sha256File(file){
+    const chunkSize = 1024*1024; // 1MB
+    const chunks = Math.ceil(file.size/chunkSize);
+    const digests = [];
+    const reader = new FileReader();
+    let offset = 0;
+    const enc = new TextEncoder(); // not used but keeps scope clean
+    async function readChunk(){
+      return new Promise((resolve,reject)=>{
+        const slice = file.slice(offset, offset+chunkSize);
+        reader.onload = async (e)=>{
+          try{
+            const buf = e.target.result;
+            digests.push(buf); // accumulate raw, we'll hash once at the end by concatenating
+            offset += chunkSize;
+            h.progress.value = Math.min(100, Math.round((offset/file.size)*100));
+            resolve();
+          }catch(err){ reject(err); }
+        };
+        reader.onerror = reject; reader.readAsArrayBuffer(slice);
+      });
+    }
+    while(offset < file.size){ await readChunk(); }
+    // concat
+    let total = new Uint8Array(file.size); let pos=0;
+    for(const part of digests){ total.set(new Uint8Array(part), pos); pos += new Uint8Array(part).length; }
+    const hashBuf = await crypto.subtle.digest('SHA-256', total.buffer);
+    const hex = Array.from(new Uint8Array(hashBuf)).map(b=> b.toString(16).padStart(2,'0')).join('');
+    return hex;
+  }
+  h.start.addEventListener('click', async ()=>{
+    const f = h.file.files?.[0]; if(!f){ h.out.textContent='Chưa chọn file'; return; }
+    h.progress.value = 0; h.out.textContent = 'Đang tính…';
+    try{ const hex = await sha256File(f); h.out.textContent = hex; }
+    catch(e){ h.out.textContent = 'Lỗi: '+ e.message; }
+  });
+  h.copy.addEventListener('click', async ()=>{ try{ await navigator.clipboard.writeText(h.out.textContent.trim()); h.copy.textContent='Đã copy'; setTimeout(()=> h.copy.textContent='Copy', 1200);}catch(e){} });
+
+  // ADB builder
+  const adb = { action: $('#adb-action'), params: $('#adb-params'), out: $('#adb-out'), copy: $('#adb-copy'), usb: $('#adb-usb') };
+  function paramInput(id, label, placeholder=''){ return `<div class="space-y-1"><label class="text-xs text-gray-500">${label}</label><input id="${id}" class="w-full border rounded-xl p-2 bg-transparent" placeholder="${placeholder}"/></div>` }
+  function buildUI(){
+    const a = adb.action.value; let html='';
+    if(a==='install'){ html+=paramInput('apk','Đường dẫn APK','C:\\path\\app.apk')+paramInput('flags','Flags tuỳ chọn','-r -d'); }
+    if(a==='uninstall'||a==='disable'||a==='enable'){ html+=paramInput('pkg','Package name','com.example.app'); if(a==='uninstall') html+=paramInput('flags','Flags','-k (giữ data)'); }
+    if(a==='screencap'){ html+=paramInput('out','Đường lưu trên thiết bị','/sdcard/screen.png'); }
+    if(a==='screenrecord'){ html+=paramInput('out','Đường lưu trên thiết bị','/sdcard/record.mp4')+paramInput('dur','Thời lượng (giây)','30'); }
+    if(a==='logcat'){ html+=paramInput('tag','Tag','MyAppTag')+paramInput('prio','Priority (V,D,I,W,E,F,S)','E'); }
+    adb.params.innerHTML = html; compute();
+  }
+  function compute(){
+    const a = adb.action.value; let cmd = 'adb ';
+    switch(a){
+      case 'devices': cmd+='devices'; break;
+      case 'install': {
+        const apk=$('#apk')?.value||''; const flags=$('#flags')?.value||''; cmd+=`install ${flags} "${apk}"`.trim(); break; }
+      case 'uninstall': {
+        const pkg=$('#pkg')?.value||''; const flags=$('#flags')?.value||''; cmd+=`uninstall ${flags} ${pkg}`.trim(); break; }
+      case 'disable': { const pkg=$('#pkg')?.value||''; cmd+=`shell pm disable-user --user 0 ${pkg}`; break; }
+      case 'enable': { const pkg=$('#pkg')?.value||''; cmd+=`shell pm enable ${pkg}`; break; }
+      case 'reboot-bootloader': cmd+='reboot bootloader'; break;
+      case 'reboot-recovery': cmd+='reboot recovery'; break;
+      case 'screencap': { const out=$('#out')?.value||'/sdcard/screen.png'; cmd+=`shell screencap -p ${out}`; break; }
+      case 'screenrecord': { const out=$('#out')?.value||'/sdcard/record.mp4'; const dur=$('#dur')?.value||'30'; cmd+=`shell screenrecord --time-limit ${dur} ${out}`; break; }
+      case 'logcat': { const tag=$('#tag')?.value||''; const prio=$('#prio')?.value||'E'; cmd+=`logcat ${tag}:${prio}`.trim(); break; }
+    }
+    adb.out.value = cmd;
+  }
+  adb.action.addEventListener('change', buildUI);
+  $('#adb-params').addEventListener('input', compute);
+  adb.copy.addEventListener('click', async ()=>{ try{ await navigator.clipboard.writeText(adb.out.value); adb.copy.textContent='Đã copy'; setTimeout(()=> adb.copy.textContent='Copy',1200);}catch(e){} });
+  adb.usb.addEventListener('click', ()=>{ adb.out.value = 'adb start-server && adb usb && '+adb.out.value; });
+  buildUI();
+
+  // DPI calc
+  const dpi = { res: $('#dpi-res'), inch: $('#dpi-inch'), val: $('#dpi-value'), out: $('#dpi-out'), ppi: $('#dpi-ppi'), bucket: $('#dpi-bucket') };
+  function dpiRender(){
+    const m = /^(\d+)x(\d+)$/i.exec(String(dpi.res.value).trim());
+    const diag = toNum(dpi.inch.value);
+    if(!m || !Number.isFinite(diag) || diag<=0){ dpi.ppi.textContent='—'; dpi.bucket.textContent='—'; dpi.out.textContent='—'; return; }
+    const w=parseInt(m[1],10), h=parseInt(m[2],10);
+    const ppi = Math.sqrt(w*w+h*h)/diag;
+    dpi.ppi.textContent = Math.round(ppi);
+    // bucket nearest standard: mdpi=160, hdpi=240, xhdpi=320, xx=480, xxx=640
+    const buckets = [160,240,320,480,640];
+    const names = ['mdpi','hdpi','xhdpi','xxhdpi','xxxhdpi'];
+    let idx=0, best=Infinity; for(let i=0;i<buckets.length;i++){ const d=Math.abs(ppi-buckets[i]); if(d<best){best=d; idx=i;} }
+    const scale = buckets[idx]/160;
+    dpi.bucket.textContent = names[idx];
+    // dp/px convert
+    const v = String(dpi.val.value).trim().toLowerCase();
+    let out='';
+    if(v.endsWith('dp')){ const num=toNum(v.slice(0,-2)); if(Number.isFinite(num)) out = `${num}dp ≈ ${(num*scale).toFixed(2)}px @${scale.toFixed(2)}`; }
+    else if(v.endsWith('px')){ const num=toNum(v.slice(0,-2)); if(Number.isFinite(num)) out = `${num}px ≈ ${(num/scale).toFixed(2)}dp @${scale.toFixed(2)}`; }
+    else { out = 'Nhập dạng 16dp hoặc 48px'; }
+    dpi.out.textContent = out;
+  }
+  ;['input','blur'].forEach(ev=>{ dpi.res.addEventListener(ev,dpiRender); dpi.inch.addEventListener(ev,dpiRender); dpi.val.addEventListener(ev,dpiRender); });
+  dpiRender();
+
+  // Global reset
+  $('#btn-reset-all').addEventListener('click', ()=>{
+    location.reload();
+  });
+})();
+</script>
+</body>
+</html>

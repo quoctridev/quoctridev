@@ -1,0 +1,106 @@
+{
+  "profile": {
+    "name": "Nguyễn Quốc Anh",
+    "nickname": "Trí",
+    "role": "Java Backend Developer",
+    "avatar": "assets/img/avatar-1.jpg",
+    "avatarOptions": ["assets/img/avatar-1.jpg", "assets/img/avatar-2.jpg"],
+    "location": "Hải Phòng, Việt Nam",
+    "birthDate": "12/04/2007",
+    "company": "Bee Logistics",
+    "education": "Từng học tại FPT Polytechnic",
+    "gpa": "3.85/4.0",
+    "intro": "Xin chào, mình là",
+    "bio": "Mình định hướng Java Backend, tập trung vào Spring Boot, REST API, JWT, cơ sở dữ liệu và triển khai backend thực chiến.",
+    "cvLink": "assets/pdf/nguyen-quoc-anh-cv.pdf",
+    "social": {
+      "github": "https://github.com/quoctridev",
+      "facebook": "https://www.facebook.com/quoctris.dev/",
+      "telegram": "https://t.me/quoctrisdev",
+      "email": "mailto:quoctris.dev@gmail.com",
+      "phone": "0793391878",
+      "website": "https://quoctri.dev"
+    }
+  },
+  "services": [
+    {
+      "icon": "fa-server",
+      "color": "blue",
+      "title": "Java Backend",
+      "desc": "Làm việc với Java, Spring Boot, Spring Security và RESTful API để xây dựng hệ thống rõ nghiệp vụ, dễ mở rộng."
+    },
+    {
+      "icon": "fa-laptop-code",
+      "color": "green",
+      "title": "Frontend & UI",
+      "desc": "Phối hợp ReactJS, HTML, CSS và TailwindCSS để hoàn thiện luồng sản phẩm từ backend ra giao diện."
+    },
+    {
+      "icon": "fa-rocket",
+      "color": "orange",
+      "title": "Deploy & Automation",
+      "desc": "Triển khai với Docker, Nginx, VPS và tự động hóa các luồng webhook hoặc Telegram bot."
+    }
+  ],
+  "projects": [
+    {
+      "title": "Foco",
+      "category": "Restaurant Management",
+      "icon": "fa-solid fa-utensils",
+      "iconColor": "text-blue-400",
+      "image": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=800&auto=format&fit=crop",
+      "desc": "Nền tảng SaaS quản lý bán hàng đa chi nhánh, mình phụ trách backend, thiết kế dữ liệu, xây 20+ RESTful APIs và áp dụng JWT phân quyền.",
+      "tech": ["Spring Boot", "Spring Security", "JWT", "SQL Server", "Cloudflare R2"],
+      "link": "https://github.com/quoctridev/Foco"
+    },
+    {
+      "title": "POS_Func",
+      "category": "Graduation Project",
+      "icon": "fa-solid fa-cash-register",
+      "iconColor": "text-yellow-400",
+      "image": "https://images.unsplash.com/photo-1556740749-887f6717d7e4?q=80&w=800&auto=format&fit=crop",
+      "desc": "Dự án tốt nghiệp Java Swing theo mô hình nhiều lớp DAO - DTO - Entity - UI, xử lý bán hàng, hóa đơn, kho, phân quyền và thống kê.",
+      "tech": ["Java Swing", "SQL Server", "DAO/DTO", "Inventory", "Statistics"],
+      "link": "https://github.com/quoctridev/POS_Func"
+    },
+    {
+      "title": "QuocTriMoney",
+      "category": "Automation Tool",
+      "icon": "fa-solid fa-wallet",
+      "iconColor": "text-green-400",
+      "image": "https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=800&auto=format&fit=crop",
+      "desc": "Tool nhận webhook giao dịch ngân hàng rồi đẩy thông báo sang Telegram, phục vụ theo dõi giao dịch nhanh và dễ mở rộng.",
+      "tech": ["Node.js", "Express", "Telegram Bot", "SePay", "Webhook"],
+      "link": "https://github.com/quoctridev/QuocTriMoney"
+    }
+  ],
+  "achievements": [
+    {
+      "title": "Top 3 sinh viên xuất sắc nhất ngành",
+      "desc": "Danh hiệu nổi bật trong quá trình học tại FPT Polytechnic."
+    },
+    {
+      "title": "Ong Vàng học kỳ Summer 2024",
+      "desc": "Danh hiệu học tập nổi bật tại FPT Polytechnic."
+    },
+    {
+      "title": "Quán quân BugSlayer FPT Thanh Hóa",
+      "desc": "Giải thưởng nổi bật trong năm 2025."
+    },
+    {
+      "title": "MOS Word 925",
+      "desc": "Điểm/chứng chỉ MOS Word 925."
+    },
+    {
+      "title": "Hackathon FPT",
+      "desc": "Đã tham gia để cọ xát với môi trường làm việc và giải bài toán thực tế."
+    }
+  ],
+  "contact": {
+    "title": "Liên hệ với mình",
+    "desc": "Bạn có thể kết nối qua email, Telegram, Facebook hoặc GitHub nếu muốn trao đổi về dự án hay công việc.",
+    "emailText": "Gửi Email",
+    "telegramText": "Nhắn Telegram",
+    "phoneText": "Sao chép SĐT"
+  }
+}
